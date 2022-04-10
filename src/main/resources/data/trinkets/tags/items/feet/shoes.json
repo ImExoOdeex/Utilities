@@ -1,0 +1,12 @@
+{
+  "replace": true,
+  "amount": 2,
+  "values": [
+    "supplementaryaccessories:spectre_boots",
+    "supplementaryaccessories:horseshoe",
+    "supplementaryaccessories:flipper",
+    "supplementaryaccessories:spectre_boots",
+    "supplementaryaccessories:rocket_boots",
+    "supplementaryaccessories:hermes_boots"
+  ]
+}

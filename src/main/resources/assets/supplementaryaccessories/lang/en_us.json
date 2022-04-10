@@ -1,0 +1,25 @@
+{
+  "itemGroup.supplementaryaccessories.supplementaryaccessories": "Supplementary Accessories",
+  "item.supplementaryaccessories.hermes_boots": "Hermes boots",
+  "item.supplementaryaccessories.rocket_boots": "Rocket boots",
+  "item.supplementaryaccessories.spectre_boots": "Spectre boots",
+  "item.supplementaryaccessories.horseshoe": "Horseshoe",
+  "item.supplementaryaccessories.aglet": "Aglet",
+  "item.supplementaryaccessories.flipper": "Flipper",
+  "item.supplementaryaccessories.cloudinabottle": "Cloud in a bottle",
+  "item.supplementaryaccessories.bandofregeneration": "Band of regeneration",
+  "item.supplementaryaccessories.balloon": "Balloon",
+  "item.supplementaryaccessories.feralclaws": "Feral claws",
+  "item.supplementaryaccessories.bezoar": "Bezoar",
+  "item.supplementaryaccessories.hamburgercap": "Hamburger cap",
+  "item.supplementaryaccessories.bulletproofvest": "Bulletproof vest",
+  "item.supplementaryaccessories.watch": "Watch",
+  "item.supplementaryaccessories.gps": "GPS",
+
+
+
+  "Bezoar": "Immunity to §4poison",
+  "HermesBoots": "Boosts your §3Speed",
+  "RocketBoots": "Allows §4flight §rfor some §5time",
+  "SpectreBoots": "Combination §4rocket boots §rwith §3hermes boots"
+}
