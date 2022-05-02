@@ -6,8 +6,10 @@
     "legs/belt",
     "hand/ring",
     "hand/glove",
+    "hand/wrist",
     "chest/necklace",
     "chest/back",
-    "head/hat"
+    "head/hat",
+    "head/face"
   ]
 }

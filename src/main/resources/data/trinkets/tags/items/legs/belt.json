@@ -2,6 +2,8 @@
   "replace": true,
   "amount": 1,
   "values": [
-    "supplementaryaccessories:cloudinabottle"
+    "supplementaryaccessories:cloudinabottle",
+    "supplementaryaccessories:vitamins",
+    "supplementaryaccessories:blackbelt"
   ]
 }

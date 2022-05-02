@@ -3,6 +3,9 @@
   "amount": 1,
   "values": [
     "supplementaryaccessories:balloon",
-    "supplementaryaccessories:feralclaws"
+    "supplementaryaccessories:cloudinaballoon",
+    "supplementaryaccessories:feralclaws",
+    "supplementaryaccessories:combatshield",
+    "supplementaryaccessories:obsidianshield"
   ]
 }

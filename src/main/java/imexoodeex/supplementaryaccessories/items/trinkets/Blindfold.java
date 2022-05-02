@@ -4,10 +4,9 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stat.Stat;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -16,19 +15,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Bezoar extends TrinketItem {
-    public Bezoar(Settings settings) {
+public class Blindfold extends TrinketItem {
+
+    public Blindfold(Settings settings) {
         super(settings);
     }
+
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        if (entity.hasStatusEffect(StatusEffects.POISON)) {
-            entity.removeStatusEffect(StatusEffects.POISON);
+        if (entity.hasStatusEffect(StatusEffects.BLINDNESS)) {
+
+            entity.removeStatusEffect(StatusEffects.BLINDNESS);
+            // TODO: in 1.19 add darkness effect
+
         }
-
-
         super.tick(stack, slot, entity);
     }
 

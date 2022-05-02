@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "supplementaryaccessories:gps",
+    "supplementaryaccessories:watch",
+    "supplementaryaccessories:radar"
+  ]
+}

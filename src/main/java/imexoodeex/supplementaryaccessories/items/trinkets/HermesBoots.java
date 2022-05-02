@@ -45,7 +45,7 @@ public class HermesBoots extends TrinketItem {
 
         if (entity.isSprinting()) {
             a++;
-        } else if (!entity.isSprinting()){
+        } else if (!entity.isSprinting()) {
             resetTimer();
         }
 
@@ -53,7 +53,7 @@ public class HermesBoots extends TrinketItem {
             value = 1.05;
         } else if (a >= 100 && a < 150) {
             value = 1.09;
-        }  else if (a >= 150 && a < 200) {
+        } else if (a >= 150 && a < 200) {
             value = 1.12;
         } else if (a >= 200 && a < 250) {
             value = 1.18;
@@ -66,17 +66,17 @@ public class HermesBoots extends TrinketItem {
         } else {
             value = DefaultValue;
         }
-            if (isSprinting && isGrounded) {
-                player.setVelocity(vec.getX() * value, vec.getY(), vec.getZ() * value);
-                HermesBootsParticles.spawnRocketParticles(entity, world);
-            }
+        if (isSprinting && isGrounded) {
+            player.setVelocity(vec.getX() * value, vec.getY(), vec.getZ() * value);
+            HermesBootsParticles.spawnRocketParticles(entity, world);
+        }
 
-            super.tick(stack, slot, entity);
+        super.tick(stack, slot, entity);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

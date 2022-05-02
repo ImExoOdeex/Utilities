@@ -27,6 +27,7 @@ public class BandOfRegeneration extends TrinketItem {
     public void resetTimer() {
         a = 0;
     }
+    private int activeValue = 400;
 
     private void heal(PlayerEntity player) {
         player.setHealth(player.getHealth() + 1.0f);
@@ -40,9 +41,10 @@ public class BandOfRegeneration extends TrinketItem {
 
         a += 1;
         PlayerEntity player = (PlayerEntity) entity;
-        if (a >= 200) {
+        if (a >= activeValue) {
             heal(player);
             a = 0;
+            player.getItemCooldownManager().set(stack.getItem(), activeValue / 2);
         }
 
         super.tick(stack, slot, entity);

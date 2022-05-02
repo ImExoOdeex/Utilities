@@ -1,7 +1,6 @@
 package imexoodeex.supplementaryaccessories.sounds;
 
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 public class SASounds {

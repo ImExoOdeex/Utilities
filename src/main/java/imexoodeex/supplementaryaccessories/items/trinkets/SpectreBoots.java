@@ -15,6 +15,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -36,6 +37,7 @@ public class SpectreBoots extends TrinketItem {
     private void resetTimer() {
         a = 0;
     }
+
     private final int activeValue = 15;
 
     /* 20 tick is 1 second, so 7 * 1 sec is 7 seconds of flying*/
@@ -46,11 +48,11 @@ public class SpectreBoots extends TrinketItem {
     private static boolean jumpKey = false;
 
     private static int getMultiJumps() {
-        int jumpCount = 0;
         jumpCount += 1;
-
         return jumpCount;
     }
+
+    private static boolean wasJumping = false;
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
@@ -58,51 +60,62 @@ public class SpectreBoots extends TrinketItem {
         boolean isSprinting = entity.isSprinting();
         boolean isGrounded = entity.isOnGround();
         boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
-        boolean wasJumping = MinecraftClient.getInstance().options.jumpKey.wasPressed();
-        boolean isRocketFlying = isJumping && !isGrounded && !entity.isClimbing() && a >= activeValue;
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
 
         World world = entity.world;
 
-        PlayerEntity player = (PlayerEntity) entity ;
-        if (entity.isOnGround() || entity.hasVehicle()) {
+        PlayerEntity player = (PlayerEntity) entity;
+
+        /*if (isGrounded || entity.hasVehicle()) {
             jumpCount = getMultiJumps();
         } else if (isJumping) {
-            if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-//                    player.jump();
-                entity.setVelocity(v.getX(), 0.5, v.getZ());
+            if ((!jumpKey && jumpCount > 0 && yVelocity < 0.333)) {
+                entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.02, v.getZ());
                 SpectreBootsParticles.spawnRocketParticles(entity, world);
-//                    FLIGHTTIME--;
-//                    LOGGER.info("Double Jump----------------------------------------------------------------------------------------------------------------------");
+                FLIGHTTIME--;
+//                 LOGGER.info("Double Jump----------------------------------------------------------------------------------------------------------------------");
                 entity.fallDistance = 0.0F;
-                jumpCount--;
+//                jumpCount--;
             }
-            jumpKey = true;
+            jumpKey = false;
         } else {
             jumpKey = false;
+        }*/
+
+        if (isJumping) {
+            entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.01, v.getZ());
+            SpectreBootsParticles.spawnRocketParticles(entity, world);
+            FLIGHTTIME--;
+            entity.fallDistance = 0.0F;
         }
 
         if (world.isClient()) {
-            LOGGER.info("is jumping: " + isJumping + "     ||     is grounded: " + isGrounded + "     ||     jump key: " + jumpKey + "     ||     jump count: " + jumpCount + "     ||     flight time: " + FLIGHTTIME);
+            LOGGER.info("is jumping: " + isJumping + "     ||     was jumping: " + wasJumping + "     ||     is grounded: " + isGrounded + "     ||     jump key: " + jumpKey + "     ||     jump count: " + jumpCount + "     ||     flight time: " + FLIGHTTIME);
+            LOGGER.info(a);
         }
 
+        // hermes particles
         if (isSprinting && isGrounded) {
             HermesBootsParticles.spawnRocketParticles(entity, world);
         }
+        // hermes particles END
 
-        if ((isJumping) || !isGrounded) {
+        // flight time
+        if (isJumping || !isGrounded) {
             a++;
         } else {
             resetTimer();
         }
 
-        String rf = "|||||||||||||||||||||||||||||||";
+                String rf = "|||||||||||||||||||||||||||||||";
         if (a < activeValue || !isJumping || entity.isClimbing()) {
             FLIGHTTIME += 0.2;
             rf = "REFILING";
         }
+        // flight time END
 
+        // active value
         if (isGrounded) {
             a = 0;
         }
@@ -115,12 +128,19 @@ public class SpectreBoots extends TrinketItem {
             resetTimer();
         }
 
+        //check if player was jumping in this tick
+        if (isJumping) {
+            wasJumping = true;
+        } else {
+            wasJumping = false;
+        }
+
         super.tick(stack, slot, entity);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
