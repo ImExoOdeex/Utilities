@@ -75,7 +75,6 @@ public class RocketBoots extends TrinketItem {
             FLIGHTTIME = flightTimeMax;
         }
 
-        LOGGER.info("Flight time: " + FLIGHTTIME);
         super.tick(stack, slot, entity);
     }
 

@@ -2,6 +2,7 @@ package imexoodeex.supplementaryaccessories.mixin;
 
 import imexoodeex.supplementaryaccessories.items.trinkets.GPS;
 import imexoodeex.supplementaryaccessories.items.trinkets.Radar;
+import imexoodeex.supplementaryaccessories.items.trinkets.Stopwatch;
 import imexoodeex.supplementaryaccessories.items.trinkets.Watch;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -24,26 +25,30 @@ public abstract class InGameHudMixin {
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if (Watch.isEquipped) {
-            this.renderText(matrixStack, client.textRenderer, Watch.text, 10, height / 2, 0xffffff, 1);
+        if (Stopwatch.isEquipped) {
+            accessories = 10;
+            this.renderText(matrixStack, client.textRenderer, Stopwatch.text, 10, height / 2 + accessories, 0xffffff, 1);
         }
         if (Radar.isEquipped) {
-            if (Watch.isEquipped) {
+            accessories = 0;
+            this.renderText(matrixStack, client.textRenderer, Radar.text, 10, height / 2 + accessories, 0xffffff, 1);
+        }
+        if (GPS.isEquipped) {
+            if (Radar.isEquipped) {
                 accessories = 10;
             } else {
                 accessories = 0;
             }
-            this.renderText(matrixStack, client.textRenderer, Radar.text, 10, height / 2 - accessories, 0xffffff, 1);
+            this.renderText(matrixStack, client.textRenderer, GPS.text, 10, height / 2 + accessories, 0xffffff, 1);
         }
-        if (GPS.isEquipped) {
-            if (Radar.isEquipped) {
+        if (Watch.isEquipped) {
+            if (Radar.isEquipped && GPS.isEquipped) {
                 accessories = 20;
-            } else {
+            } else if (Radar.isEquipped || GPS.isEquipped) {
                 accessories = 10;
             }
-            this.renderText(matrixStack, client.textRenderer, GPS.text, 10, height / 2 - accessories, 0xffffff, 1);
-        } else {
-            this.renderText(matrixStack, client.textRenderer, "", 10, height / 2 - accessories, 0xffffff, 1);
+            this.renderText(matrixStack, client.textRenderer, Watch.text, 10, height / 2 + accessories, 0xffffff, 1);
+            this.renderText(matrixStack, client.textRenderer, Watch.text1, 10, height / 2 + 10 + accessories, 0xffffff, 1);
         }
 
     }

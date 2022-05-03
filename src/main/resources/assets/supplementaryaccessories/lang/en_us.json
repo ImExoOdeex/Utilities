@@ -25,6 +25,7 @@
   "item.supplementaryaccessories.frogflipper": "Frog flipper",
   "item.supplementaryaccessories.blackbelt": "Black belt",
   "item.supplementaryaccessories.warrioremblem": "Warrior emblem",
+  "item.supplementaryaccessories.stopwatch": "Stopwatch",
 
   "trinkets.slot.hand.wrist": "Wrist",
 
@@ -54,5 +55,6 @@
   "FrogLeg": "§5Jump §rheight §3increased§r. §2Allows §rjumping §51.5 §rblocks. ",
   "FrogFlipper": "§5Jump §rheight §3increased §rand Faster §9swimming",
   "BlackBelt": "immunity to §8wither §reffect",
-  "WarriorEmblem": "Attack §5damage §rincreased by §35%"
+  "WarriorEmblem": "Attack §5damage §rincreased by §35%",
+  "Stopwatch": "Shows players §6movement §5speed"
 }

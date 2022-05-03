@@ -3,6 +3,7 @@
   "values": [
     "supplementaryaccessories:gps",
     "supplementaryaccessories:watch",
-    "supplementaryaccessories:radar"
+    "supplementaryaccessories:radar",
+    "supplementaryaccessories:stopwatch"
   ]
 }
