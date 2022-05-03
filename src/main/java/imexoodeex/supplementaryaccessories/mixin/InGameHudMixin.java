@@ -25,16 +25,25 @@ public abstract class InGameHudMixin {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (Watch.isEquipped) {
-            this.renderText(matrixStack, client.textRenderer, Watch.text, width - 85, height / 2, 0xffffff, 1);
+            this.renderText(matrixStack, client.textRenderer, Watch.text, 10, height / 2, 0xffffff, 1);
         }
         if (Radar.isEquipped) {
-            this.renderText(matrixStack, client.textRenderer, Radar.text, 10, height / 2, 0xffffff, 1);
+            if (Watch.isEquipped) {
+                accessories = 10;
+            } else {
+                accessories = 0;
+            }
+            this.renderText(matrixStack, client.textRenderer, Radar.text, 10, height / 2 - accessories, 0xffffff, 1);
         }
         if (GPS.isEquipped) {
-            accessories = 10;
-            this.renderText(matrixStack, client.textRenderer, GPS.text, width - 85, height / 2 - accessories, 0xffffff, 1);
+            if (Radar.isEquipped) {
+                accessories = 20;
+            } else {
+                accessories = 10;
+            }
+            this.renderText(matrixStack, client.textRenderer, GPS.text, 10, height / 2 - accessories, 0xffffff, 1);
         } else {
-            this.renderText(matrixStack, client.textRenderer, "", width - 85, height / 2 - accessories, 0xffffff, 1);
+            this.renderText(matrixStack, client.textRenderer, "", 10, height / 2 - accessories, 0xffffff, 1);
         }
 
     }

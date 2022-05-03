@@ -1,6 +1,7 @@
 {
   "replace": true,
   "values": [
-    "supplementaryaccessories:bezoar"
+    "supplementaryaccessories:bezoar",
+    "supplementaryaccessories:warrioremblem"
   ]
 }

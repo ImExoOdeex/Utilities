@@ -38,6 +38,7 @@ public class ItemRegister {
     public static Item frogleg = new FrogLeg(createGroup.rarity(Rarity.COMMON));
     public static Item frogflipper = new FrogFlipper(createGroup.rarity(Rarity.COMMON));
     public static Item blackbelt = new BlackBelt(createGroup.rarity(Rarity.COMMON));
+    public static Item warrioremblem = new WarriorEmblem(createGroup.rarity(Rarity.COMMON));
 
     public static void init() {
         registerItems("spectre_boots", spectre_boots);
@@ -64,5 +65,6 @@ public class ItemRegister {
         registerItems("frogleg", frogleg);
         registerItems("frogflipper", frogflipper);
         registerItems("blackbelt", blackbelt);
+        registerItems("warrioremblem", warrioremblem);
     }
 }

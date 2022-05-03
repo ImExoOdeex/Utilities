@@ -24,6 +24,7 @@
   "item.supplementaryaccessories.frogleg": "Frog leg",
   "item.supplementaryaccessories.frogflipper": "Frog flipper",
   "item.supplementaryaccessories.blackbelt": "Black belt",
+  "item.supplementaryaccessories.warrioremblem": "Warrior emblem",
 
   "trinkets.slot.hand.wrist": "Wrist",
 
@@ -34,7 +35,7 @@
   "ObsidianShield": "player §7receives §rweaker §5knockback §rand less §cfire §4damage",
   "CloudInABottle": "Allows §5dou§able §3jump",
   "FeralClaws": "Faster §9attack §5speed",
-  "Flipper": "Faster §7swimming",
+  "Flipper": "Faster §1swimming",
   "Horseshoe": "Reduces §580% §rof fall §4damage",
   "HamburgerCap": "Immunity to §2hungry §reffect",
   "HermesBoots": "Boosts your §3Speed",
@@ -49,8 +50,9 @@
   "Radar": "Shows closest §3player",
   "on": "is equipped: §2Yes",
   "off": "is equipped: §4No",
-  "CloudInABalloon": "Slower §1falling, no fall §4damage §and §2double §rjump",
+  "CloudInABalloon": "Slower §9falling§r, no fall §4damage §rand §2double §rjump",
   "FrogLeg": "§5Jump §rheight §3increased§r. §2Allows §rjumping §51.5 §rblocks. ",
   "FrogFlipper": "§5Jump §rheight §3increased §rand Faster §9swimming",
-  "BlackBelt": "immunity to §8wither §reffect"
+  "BlackBelt": "immunity to §8wither §reffect",
+  "WarriorEmblem": "Attack §5damage §rincreased by §35%"
 }
