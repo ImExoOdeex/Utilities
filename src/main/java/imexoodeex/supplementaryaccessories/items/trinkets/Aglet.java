@@ -14,8 +14,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.*;
-
 public class Aglet extends TrinketItem {
     public Aglet(Settings settings) {
         super(settings);

@@ -3,10 +3,12 @@
   "id": "supplementaryaccessories",
   "version": "${version}",
   "name": "Supplementary Accessories",
-  "description": "Terraria style mod. Adds various accessories to the game. Explore world to make your game easier!",
+  "description": "Terraria style mod. Adds various accessories to the game. Explore world to make your game more interesting.",
   "authors": ["imexoodeex"],
-  "contact": {},
-  "website": "cebuliony.pl",
+  "contact": {
+    "website": "https://www.cebuliony.pl/",
+    "repo": "https://github.com/ImExoOdeex/squirting-syringe"
+  },
   "license": "GPL-3.0",
   "icon": "assets/SupplementaryAccessories/icon.png",
   "environment": "*",

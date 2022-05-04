@@ -2,19 +2,14 @@ package imexoodeex.supplementaryaccessories.items.trinkets;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
-import imexoodeex.supplementaryaccessories.SupplementaryAccessories;
 import imexoodeex.supplementaryaccessories.client.particles.CloudInABottleParticles;
-import imexoodeex.supplementaryaccessories.registers.SoundsRegister;
 import imexoodeex.supplementaryaccessories.sounds.SASounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.sound.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -25,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.*;
+import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
 public class CloudInABottle extends TrinketItem {
     public CloudInABottle(Settings settings) {
@@ -54,6 +49,14 @@ public class CloudInABottle extends TrinketItem {
         PlayerEntity player = (PlayerEntity) entity;
 
         // double jump
+        /*
+        *
+        *
+        * a little of double jump logic borrowed from https://github.com/genandnic/Wall-Jump/blob/1.18.1/src/main/java/genandnic/walljump/client/DoubleJumpLogic.java
+        *
+        *
+        * */
+
         if (entity.isOnGround() || entity.hasVehicle()) {
             jumpCount = getMultiJumps();
         } else if (isJumping) {

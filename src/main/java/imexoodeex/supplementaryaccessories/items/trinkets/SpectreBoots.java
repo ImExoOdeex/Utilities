@@ -2,30 +2,22 @@ package imexoodeex.supplementaryaccessories.items.trinkets;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
-import imexoodeex.supplementaryaccessories.client.particles.CloudInABottleParticles;
 import imexoodeex.supplementaryaccessories.client.particles.HermesBootsParticles;
 import imexoodeex.supplementaryaccessories.client.particles.RocketBootsParticles;
 import imexoodeex.supplementaryaccessories.client.particles.SpectreBootsParticles;
-import imexoodeex.supplementaryaccessories.sounds.SASounds;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.*;
 
 public class SpectreBoots extends TrinketItem {
 
