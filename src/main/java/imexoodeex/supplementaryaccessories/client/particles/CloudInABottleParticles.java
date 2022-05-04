@@ -1,6 +1,5 @@
 package imexoodeex.supplementaryaccessories.client.particles;
 
-import imexoodeex.supplementaryaccessories.registers.ParticleRegister;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;

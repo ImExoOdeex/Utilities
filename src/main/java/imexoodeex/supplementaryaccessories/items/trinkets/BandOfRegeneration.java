@@ -16,8 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.*;
-
 public class BandOfRegeneration extends TrinketItem {
     public BandOfRegeneration(Settings settings) {
         super(settings);
@@ -31,9 +29,8 @@ public class BandOfRegeneration extends TrinketItem {
 
     private void heal(PlayerEntity player) {
         player.setHealth(player.getHealth() + 1.0f);
-
         World world = player.world;
-        world.addParticle(ParticleTypes.HEART, player.getX(), player.getY() + 2D, player.getZ(), 0, 0.07D, 0);
+        HealParticles.spawnHealParticles((LivingEntity) player, world);
     }
 
     @Override
@@ -43,7 +40,7 @@ public class BandOfRegeneration extends TrinketItem {
         PlayerEntity player = (PlayerEntity) entity;
         if (a >= activeValue) {
             heal(player);
-            a = 0;
+            resetTimer();
             player.getItemCooldownManager().set(stack.getItem(), activeValue / 2);
         }
 

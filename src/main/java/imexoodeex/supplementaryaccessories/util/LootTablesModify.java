@@ -81,6 +81,55 @@ public class LootTablesModify {
     private static final Identifier WOODLAND_MANSION_CHEST_ID
             = new Identifier("minecraft", "chests/woodland_mansion");
 
+    // village
+    private static final Identifier VILLAGE_ARMORER_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_armorer");
+
+    private static final Identifier VILLAGE_BUTCHER_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_butcher");
+
+    private static final Identifier VILLAGE_CARTOGRAPHER_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_cartographer");
+
+    private static final Identifier VILLAGE_DESERT_HOUSE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_desert_house");
+
+    private static final Identifier VILLAGE_FISHER_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_fisher");
+
+    private static final Identifier VILLAGE_FLETCHER_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_fletcher");
+
+    private static final Identifier VILLAGE_MASON_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_mason");
+
+    private static final Identifier VILLAGE_PLAINS_HOUSE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_plains_house");
+
+    private static final Identifier VILLAGE_SAVANNA_HOUSE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_savanna_house");
+
+    private static final Identifier VILLAGE_SHEPHERD_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_shepherd");
+
+    private static final Identifier VILLAGE_SNOWY_HOUSE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_snowy_house");
+
+    private static final Identifier VILLAGE_TAIGA_HOUSE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_taiga_house");
+
+    private static final Identifier VILLAGE_TANNERY_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_tannery");
+
+    private static final Identifier VILLAGE_TEMPLE_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_temple");
+
+    private static final Identifier VILLAGE_TOOLSMITH_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_toolsmith");
+
+    private static final Identifier VILLAGE_WEAPONSMITH_CHEST_ID
+            = new Identifier("minecraft", "chests/village/village_weaponsmith");
+
     // single item to chest loot
 /*    private static void registerLoot(Identifier id, FabricLootSupplierBuilder supplier, float chance, Item item, float min, float max) {
         if (id.equals(id)) {
@@ -168,7 +217,6 @@ public class LootTablesModify {
 
     public static void modifyLootTables() {
         LootTableLoadingCallback.EVENT.register(((resourceManager, manager, id, supplier, setter) -> {
-
             registerMultipleLoot(id, supplier, STRONGHOLD_CROSSING_CHEST_ID);
             registerMultipleLoot(id, supplier, BASTION_BRIDGE_CHEST_ID);
             registerMultipleLoot(id, supplier, BASTION_HOGLIN_CHEST_ID);
@@ -193,7 +241,24 @@ public class LootTablesModify {
             registerMultipleLoot(id, supplier, WOODLAND_MANSION_CHEST_ID);
             registerMultipleLoot(id, supplier, MINESHAFT_CHEST_ID);
             registerMultipleLoot(id, supplier, DESERT_CHEST_ID);
+
+            //village
+            registerMultipleLoot(id, supplier, VILLAGE_ARMORER_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_BUTCHER_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_CARTOGRAPHER_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_DESERT_HOUSE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_FISHER_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_FLETCHER_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_MASON_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_PLAINS_HOUSE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_SAVANNA_HOUSE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_SHEPHERD_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_SNOWY_HOUSE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_TAIGA_HOUSE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_TANNERY_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_TEMPLE_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_TOOLSMITH_CHEST_ID);
+            registerMultipleLoot(id, supplier, VILLAGE_WEAPONSMITH_CHEST_ID);
         }));
     }
-
 }

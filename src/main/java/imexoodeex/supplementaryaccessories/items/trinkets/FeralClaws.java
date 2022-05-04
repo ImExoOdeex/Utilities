@@ -1,7 +1,6 @@
 package imexoodeex.supplementaryaccessories.items.trinkets;
 
 import com.google.common.collect.Multimap;
-import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
@@ -26,7 +25,7 @@ public class FeralClaws extends TrinketItem {
 
      public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
         var modifiers = super.getModifiers(stack, slot, entity, uuid);
-        modifiers.put(EntityAttributes.GENERIC_FOLLOW_RANGE, new EntityAttributeModifier(uuid, "minecraft:movement_speed", 0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        modifiers.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(uuid, "minecraft:movement_speed", 0.15, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
         return modifiers;
     }
     @Override

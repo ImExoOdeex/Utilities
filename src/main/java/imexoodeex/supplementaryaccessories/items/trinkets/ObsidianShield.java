@@ -44,7 +44,7 @@ public class ObsidianShield extends TrinketItem {
     public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
         var modifiers = super.getModifiers(stack, slot, entity, uuid);
         modifiers.put(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(uuid, "supplementaryaccessories:knockback_resistance", 0.15, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-        return super.getModifiers(stack, slot, entity, uuid);
+        return modifiers;
     }
 
     @Override

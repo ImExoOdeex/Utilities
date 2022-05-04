@@ -23,9 +23,11 @@ public class FrogFlipper extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+        Vec3d vec = entity.getVelocity();
+        double y = vec.y;
 
-        if (isJumping && !entity.isSwimming()) {
-            entity.setVelocity(entity.getVelocity().add(0, 0.02, 0));
+        if (isJumping && !entity.isSwimming() && y > 0.0D) {
+            entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
         }
 
         if (entity.isInSwimmingPose()) {

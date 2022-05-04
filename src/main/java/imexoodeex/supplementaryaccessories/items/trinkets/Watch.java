@@ -5,14 +5,10 @@ import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -21,8 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
-
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
 public class Watch extends TrinketItem {
     public Watch(Settings settings) {
@@ -38,11 +32,19 @@ public class Watch extends TrinketItem {
         if (!world.isClient) {
 
             /*
-             * 12 000 - night start
+             * 12 542 - night start
              * 0 (24 000) - day start
              *
-             * 0 - 12000 = day
-             * 12000 - 0 (24000) = night
+             * 0 - 12 542 = day
+             * 12 542 - 0 (24000) = night
+             *
+             *
+             * !IMPORTANT!
+             * Time is calculated from Minecraft day start (0 ticks, 6 AM), when players and villagers are waking up.
+             * Next is night. Night is calculated from Minecraft night start (12 542 ticks, 6:32 PM), when players and villagers are able to sleep.
+             *
+             * So don't mind me, that day and night are exactly 10 minutes long.
+             *
              * */
 
             Long ticksOfDay = world.getTimeOfDay();
@@ -69,7 +71,7 @@ public class Watch extends TrinketItem {
             Long ticksOfDayMod = ticksOfDay % 24000;
 
             //if it is night
-            if (ticksOfDayMod >= 12000) {
+            if (ticksOfDayMod >= 12542) {
                 Long timeToDay = 24000 - ticksOfDayMod;
                 Long timeToDayFixed = (timeToDay / 20) / 60;
                 String timeToDayMinutes = timeToDayFixed < 10 ? "0" + timeToDayFixed : String.valueOf(timeToDayFixed);
@@ -78,7 +80,7 @@ public class Watch extends TrinketItem {
             }
             //if it is day
             else if (ticksOfDayMod >= 0) {
-                Long timeToNight = 12000 - ticksOfDayMod;
+                Long timeToNight = 12542 - ticksOfDayMod;
                 Long timeToNightFixed = (timeToNight / 20) / 60;
                 String timeToNightMinutes = timeToNightFixed < 10 ? "0" + timeToNightFixed : String.valueOf(timeToNightFixed);
                 String timeToNightSeconds = (timeToNight / 20) % 60 < 10 ? "0" + (timeToNight / 20) % 60 : String.valueOf((timeToNight / 20) % 60);

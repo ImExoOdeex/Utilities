@@ -59,7 +59,8 @@ public class CloudInABottle extends TrinketItem {
         } else if (isJumping) {
             if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
                 player.jump();
-                player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+//                player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+                player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
                 world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
                 CloudInABottleParticles.spawnCloudParticles(entity, world);
                 entity.fallDistance = 0.0F;
@@ -69,6 +70,8 @@ public class CloudInABottle extends TrinketItem {
         } else {
             jumpKey = false;
         }
+
+        LOGGER.info("Jump Count: " + jumpCount + " | Jump Key: " + jumpKey);
         super.tick(stack, slot, entity);
     }
     @Override

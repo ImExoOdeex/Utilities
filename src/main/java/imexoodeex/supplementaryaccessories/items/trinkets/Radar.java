@@ -7,18 +7,31 @@ import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.TypeFilter;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.EntityList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
+
+import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
 public class Radar extends TrinketItem {
     public Radar(Settings settings) {
@@ -28,11 +41,11 @@ public class Radar extends TrinketItem {
     public static String text = null;
     public static boolean isEquipped = false;
     String closestEntityName = null;
+    float distanceTraveled = 0;
 
     public String setText(World world, Entity entity) {
-        Vec3d pos = entity.getPos();
 
-        //get all entities in a radius of 5 blocks by using getEntitiesByType
+//        get all entities in a radius of 5 blocks by using getEntitiesByType
 //        List<Entity> entities = world.getEntitiesByType(TypeFilter.instanceOf(Entity.class), entity.getBoundingBox().expand(5, 5, 5), Predicate.isEqual(entity));
 //        List<Entity> entitiesInRadius = new ArrayList<>();
 //        for (Entity entity1 : entities) {
@@ -40,10 +53,49 @@ public class Radar extends TrinketItem {
 //                entitiesInRadius.add(entity1);
 //            }
 //        }
-
+//
 //        text = "Closest Player: " + entitiesInRadius.get(1).getName().asString();
+        LivingEntity livingEntity = (LivingEntity) entity;
+        PlayerEntity player = (PlayerEntity) entity;
+        Vec3d pos = player.getPos();
 
-        text = "masz małego huja";
+//        List<Entity> lol = world.getEntitiesByType((TypeFilter<Entity, Entity>) entity.getType(), new Box(player.getX() - 10, player.getY() - 10, player.getZ() - 10, player.getX() + 10, player.getY() + 10, player.getZ() + 10), EntityPredicates.VALID_ENTITY);
+
+
+//        List<Entity> entities = world.getEntitiesByType(TypeFilter.instanceOf(Entity.class), entity.getBoundingBox().expand(10, 10, 10), null);
+//        List<Entity> entityList = world.getEntitiesByClass(Entity.class, player.getBoundingBox().expand(100, 100, 100), null);
+//        List<Entity> entityList1 = world.getOtherEntities(null, player.getBoundingBox().expand(100, 100, 100), Predicate.isEqual(entity));
+
+//        final PlayerEntity closestPlayer = world.getClosestPlayer(player.getX(), player.getY(), player.getZ(), 4.4, true);
+////        final PlayerEntity closestEntity = world.getClosestEntity(entities, TargetPredicate.DEFAULT, livingEntity, player.getX(),player.getY(), player.getZ(), player.getBoundingBox().expand(4.4, 4.4, 4.4));
+//
+//        if (!world.isClient()) {
+//            text = "entities around: " + ((ServerWorld)world).getEntitiesByType(entity.getType(), EntityPredicates.VALID_ENTITY).size();
+//        }
+//
+//        if (!world.isClient()) {
+//            LOGGER.info("entities around: ");
+//        }
+        // FUCK IT
+
+        String expLvlString = "";
+
+        int totalExpLvl = player.experienceLevel;
+        float expLvl = player.experienceProgress;
+
+        int expProgFix = (int) (expLvl * 100);
+        expLvlString = String.valueOf(expProgFix);
+        if (expProgFix < 10) {
+            expLvlString = "0" + expProgFix;
+        }
+
+        if (world.isClient()) {
+            distanceTraveled = player.distanceTraveled;
+        }
+
+//        text = "Total distance: " + (int) distanceTraveled + " blocks";
+        text = "Experience: " + totalExpLvl + "." + expLvlString;
+
         return text;
     }
 

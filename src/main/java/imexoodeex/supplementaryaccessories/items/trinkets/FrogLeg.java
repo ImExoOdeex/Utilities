@@ -1,14 +1,10 @@
 package imexoodeex.supplementaryaccessories.items.trinkets;
 
-import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -17,10 +13,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-//import LOGGER from main file
 import java.util.List;
-
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
 public class FrogLeg extends TrinketItem {
     public FrogLeg(Settings settings) {
@@ -37,15 +30,12 @@ public class FrogLeg extends TrinketItem {
             entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
         }
 
-
-
-        LOGGER.info(y);
-
         super.tick(stack, slot, entity);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

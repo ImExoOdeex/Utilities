@@ -1,9 +1,13 @@
 package imexoodeex.supplementaryaccessories.items.trinkets;
 
+import com.google.common.collect.Multimap;
+import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemStack;
@@ -17,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 //import LOGGER from main file supplementary accessories
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.UUID;
 
 import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
@@ -29,6 +34,8 @@ public class Stopwatch extends TrinketItem {
 
     public static String text = "";
 
+    int a = 0;
+
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
@@ -39,26 +46,27 @@ public class Stopwatch extends TrinketItem {
 
         Vec3d vec = entity.getVelocity();
 
-        double yOffset = 0;
         double xOffset = 0;
         double zOffset = 0;
         double vOffset = 0;
 
-        //some modified code from web
         double speed = (Math.sqrt(Math.pow(vec.x + xOffset, 2) + Math.pow(vec.z + zOffset, 2)) * 20) + vOffset;
         // to km/h
         speed *= 3.6;
 
         DecimalFormat dec = new DecimalFormat("#0.00");
         String formattedSpeed = dec.format(speed);
-//        double speedMul = player.getMovementSpeed() * 43.1692274;
 
         if (!world.isClient()) {
             LOGGER.info("Speed: " + formattedSpeed + " km/h");
-//            LOGGER.info("Speed: " + speedMul + " m/s");
         }
 
-        text = "Speed: " + formattedSpeed + " km/h";
+        a++;
+
+        if (a >= 2) {
+            text = "Speed: " + formattedSpeed + " km/h";
+            a = 0;
+        }
 
         super.tick(stack, slot, entity);
     }
@@ -69,6 +77,13 @@ public class Stopwatch extends TrinketItem {
         isEquipped = false;
 
         super.onUnequip(stack, slot, entity);
+    }
+
+    @Override
+    public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
+        var modifiers = super.getModifiers(stack, slot, entity, uuid);
+        SlotAttributes.addSlotModifier(modifiers, "hand/wrist", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
+        return modifiers;
     }
 
     @Override

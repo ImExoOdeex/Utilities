@@ -50,19 +50,19 @@ public class HermesBoots extends TrinketItem {
         }
 
         if (a >= 50 && a < 100) {
-            value = 1.05;
+            value = 1.04;
         } else if (a >= 100 && a < 150) {
-            value = 1.09;
+            value = 1.08;
         } else if (a >= 150 && a < 200) {
             value = 1.12;
         } else if (a >= 200 && a < 250) {
-            value = 1.18;
+            value = 1.14;
         } else if (a >= 250 && a < 300) {
-            value = 1.22;
+            value = 1.16;
         } else if (a >= 300 && a < 350) {
-            value = 1.26;
+            value = 1.18;
         } else if (a >= 350) {
-            value = 1.3;
+            value = 1.20;
         } else {
             value = DefaultValue;
         }
