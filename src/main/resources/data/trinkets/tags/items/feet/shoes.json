@@ -1,5 +1,5 @@
 {
-  "replace": true,
+  "replace": false,
   "amount": 2,
   "values": [
     "supplementaryaccessories:spectre_boots",
