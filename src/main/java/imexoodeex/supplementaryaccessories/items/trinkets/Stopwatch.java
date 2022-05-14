@@ -33,38 +33,39 @@ public class Stopwatch extends TrinketItem {
     public static String text = "";
 
     int a = 0;
+    Vec3d lastPos = new Vec3d(0, 0, 0);
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        isEquipped = true;
+        DecimalFormat dec = new DecimalFormat("#0.00");
         PlayerEntity player = (PlayerEntity) entity;
         World world = player.world;
-
-
-        Vec3d vec = entity.getVelocity();
-
-        double xOffset = 0;
-        double zOffset = 0;
-        double vOffset = 0;
-
-        double speed = (Math.sqrt(Math.pow(vec.x + xOffset, 2) + Math.pow(vec.z + zOffset, 2)) * 20) + vOffset;
-        // to km/h
-        speed *= 3.6;
-
-        DecimalFormat dec = new DecimalFormat("#0.00");
-        String formattedSpeed = dec.format(speed);
-
-        if (!world.isClient()) {
-            LOGGER.info("Speed: " + formattedSpeed + " km/h");
-        }
-
+        isEquipped = true;
+        Vec3d pos = player.getPos();
         a++;
 
-        if (a >= 2) {
-            text = "Speed: " + formattedSpeed + " km/h";
+        if (a > 20) {
             a = 0;
         }
+
+        if (a == 0) {
+            lastPos = player.getPos();
+        }
+
+        double distance = lastPos.distanceTo(pos);
+        double fixedDis = distance * 2;
+
+        // to km/h
+        /*double km = fixedDis * 3.6;
+        String formattedSpeedKm = dec.format(km);*/
+
+        String formattedSpeed = dec.format(fixedDis);
+
+        if (a == 20) {
+            text = formattedSpeed + " blocks/s";
+        }
+
 
         super.tick(stack, slot, entity);
     }

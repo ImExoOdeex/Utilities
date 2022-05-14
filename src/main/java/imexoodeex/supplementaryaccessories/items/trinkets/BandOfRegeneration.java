@@ -29,7 +29,7 @@ public class BandOfRegeneration extends TrinketItem {
     private void heal(PlayerEntity player) {
         player.setHealth(player.getHealth() + 1.0f);
         World world = player.world;
-        HealParticles.spawnHealParticles((LivingEntity) player, world);
+        HealParticles.spawnHealParticles(player, world);
     }
 
     @Override

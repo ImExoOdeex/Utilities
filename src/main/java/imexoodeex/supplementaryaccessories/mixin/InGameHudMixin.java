@@ -21,14 +21,10 @@ public abstract class InGameHudMixin {
     @Inject(at = @At("TAIL"), method = "render")
     public void render(MatrixStack matrixStack, float tickDelta, CallbackInfo info) {
 
-        int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
+//        int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if (Stopwatch.isEquipped) {
-            accessories = 10;
-            this.renderText(matrixStack, client.textRenderer, Stopwatch.text, 10, height / 2 + accessories, 0xffffff, 1);
-        }
         if (Radar.isEquipped) {
             accessories = 0;
             this.renderText(matrixStack, client.textRenderer, Radar.text, 10, height / 2 + accessories, 0xffffff, 1);
@@ -41,10 +37,23 @@ public abstract class InGameHudMixin {
             }
             this.renderText(matrixStack, client.textRenderer, GPS.text, 10, height / 2 + accessories, 0xffffff, 1);
         }
-        if (Watch.isEquipped) {
+        if (Stopwatch.isEquipped) {
             if (Radar.isEquipped && GPS.isEquipped) {
                 accessories = 20;
             } else if (Radar.isEquipped || GPS.isEquipped) {
+                accessories = 10;
+            } else {
+                accessories = 0;
+            }
+            this.renderText(matrixStack, client.textRenderer, Stopwatch.text, 10, height / 2 + accessories, 0xffffff, 1);
+        }
+        if (Watch.isEquipped) {
+            if (Radar.isEquipped && GPS.isEquipped && Stopwatch.isEquipped) {
+                accessories = 30;
+            }
+            else if ((Radar.isEquipped && GPS.isEquipped) || (Radar.isEquipped && Stopwatch.isEquipped) || (GPS.isEquipped && Stopwatch.isEquipped)) {
+                accessories = 20;
+            } else if (Radar.isEquipped || GPS.isEquipped || Stopwatch.isEquipped) {
                 accessories = 10;
             }
             this.renderText(matrixStack, client.textRenderer, Watch.text, 10, height / 2 + accessories, 0xffffff, 1);

@@ -1,5 +1,7 @@
 package imexoodeex.supplementaryaccessories;
 
+import imexoodeex.supplementaryaccessories.config.ModConfigs;
+import imexoodeex.supplementaryaccessories.config.SAConfigs;
 import imexoodeex.supplementaryaccessories.registers.CustomVillagerTranesRegister;
 import imexoodeex.supplementaryaccessories.registers.ItemRegister;
 import imexoodeex.supplementaryaccessories.registers.ParticleRegister;
@@ -16,7 +18,8 @@ public class SupplementaryAccessories implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ItemRegister.init();
+        ModConfigs.registerConfigs();
+        ItemRegister.registerSAItems();
         ParticleRegister.registerParticle();
         SoundsRegister.registerSounds();
         CustomVillagerTranesRegister.registerVillagerTrades();

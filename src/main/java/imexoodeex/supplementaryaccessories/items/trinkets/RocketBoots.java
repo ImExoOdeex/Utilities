@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -26,6 +27,7 @@ public class RocketBoots extends TrinketItem {
     /* 20 tick is 1 second, so 5 * 1 sec is 5 seconds of flying*/
     public static double FLIGHTTIME = 5 * 20;
     private final double flightTimeMax = 5 * 20;
+    private static int fallFlyingA = 0;
 
     private static int jumpCount = 0;
     private static boolean jumpKey = false;
@@ -36,11 +38,19 @@ public class RocketBoots extends TrinketItem {
     }
 
     private static void fly(LivingEntity entity, double yVelocity, World world, Vec3d v) {
-        entity.fallDistance = 0.0F;
-        entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.1, v.getZ());
-        RocketBootsParticles.spawnRocketParticles(entity, world);
-        jumpCount--;
-        FLIGHTTIME--;
+        fallFlyingA += 1;
+        if (!entity.isFallFlying()) {
+            entity.fallDistance = 0.0F;
+            entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.1, v.getZ());
+            RocketBootsParticles.spawnRocketParticles(entity, world);
+            jumpCount--;
+            FLIGHTTIME--;
+        } else {
+            if (fallFlyingA >= 10) {
+                PlayerEntity player = (PlayerEntity) entity;
+                player.stopFallFlying();
+            }
+        }
     }
 
     @Override
@@ -60,6 +70,7 @@ public class RocketBoots extends TrinketItem {
             RocketBootsParticles.spawnRocketParticles(entity, world);
         } else if (entity.isOnGround() || entity.hasVehicle()) {
             jumpCount = getMultiJumps();
+            fallFlyingA = 0;
         } else if (isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME >= 0) {
             if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
                 fly(entity, yVelocity, world, v);

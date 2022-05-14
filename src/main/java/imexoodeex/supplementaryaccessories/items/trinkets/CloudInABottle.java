@@ -43,7 +43,6 @@ public class CloudInABottle extends TrinketItem {
         boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
-        Vec3d pos = entity.getPos();
 
         World world = entity.world;
         PlayerEntity player = (PlayerEntity) entity;
@@ -62,7 +61,6 @@ public class CloudInABottle extends TrinketItem {
         } else if (isJumping) {
             if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
                 player.jump();
-//                player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
                 player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
                 world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
                 CloudInABottleParticles.spawnCloudParticles(entity, world);
@@ -74,7 +72,6 @@ public class CloudInABottle extends TrinketItem {
             jumpKey = false;
         }
 
-        LOGGER.info("Jump Count: " + jumpCount + " | Jump Key: " + jumpKey);
         super.tick(stack, slot, entity);
     }
     @Override

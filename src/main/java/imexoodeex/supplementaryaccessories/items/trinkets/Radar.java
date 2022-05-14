@@ -28,7 +28,6 @@ public class Radar extends TrinketItem {
 
     public static String text = null;
     public static boolean isEquipped = false;
-    String closestEntityName = null;
     float distanceTraveled = 0;
 
     public String setText(World world, Entity entity) {
@@ -43,9 +42,7 @@ public class Radar extends TrinketItem {
 //        }
 //
 //        text = "Closest Player: " + entitiesInRadius.get(1).getName().asString();
-        LivingEntity livingEntity = (LivingEntity) entity;
         PlayerEntity player = (PlayerEntity) entity;
-        Vec3d pos = player.getPos();
 
 //        List<Entity> lol = world.getEntitiesByType((TypeFilter<Entity, Entity>) entity.getType(), new Box(player.getX() - 10, player.getY() - 10, player.getZ() - 10, player.getX() + 10, player.getY() + 10, player.getZ() + 10), EntityPredicates.VALID_ENTITY);
 

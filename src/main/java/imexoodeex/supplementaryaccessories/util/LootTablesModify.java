@@ -4,6 +4,7 @@ import imexoodeex.supplementaryaccessories.registers.ItemRegister;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.minecraft.item.Items;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -130,18 +131,6 @@ public class LootTablesModify {
     private static final Identifier VILLAGE_WEAPONSMITH_CHEST_ID
             = new Identifier("minecraft", "chests/village/village_weaponsmith");
 
-    // single item to chest loot
-/*    private static void registerLoot(Identifier id, FabricLootSupplierBuilder supplier, float chance, Item item, float min, float max) {
-        if (id.equals(id)) {
-            FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(chance))
-                    .with(ItemEntry.builder(item))
-                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(min, max)).build());
-            supplier.withPool(poolBuilder.build());
-        }
-    }*/
-
     // all items to chest loot
     private static void registerMultipleLoot(Identifier id, FabricLootSupplierBuilder supplier, Identifier name) {
         if (name.equals(id)) {
@@ -181,7 +170,7 @@ public class LootTablesModify {
                     .with(ItemEntry.builder(ItemRegister.frogleg))
                     .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
 
-                    .with(ItemEntry.builder(ItemRegister.hamburgercap))
+                    .with(ItemEntry.builder(ItemRegister.chefhat))
                     .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
 
                     .with(ItemEntry.builder(ItemRegister.horseshoe))
@@ -209,7 +198,88 @@ public class LootTablesModify {
                     .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
 
                     .with(ItemEntry.builder(ItemRegister.radar))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
+                    .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                    .with(ItemEntry.builder(Items.AIR))
                     .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build());
+
+            //Air = 21 50%
+            //Items = 21 50%
+            //All = 42
+
 
             supplier.withPool(poolBuilder.build());
         }
