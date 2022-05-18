@@ -26,8 +26,12 @@
   "item.supplementaryaccessories.blackbelt": "Black belt",
   "item.supplementaryaccessories.warrioremblem": "Warrior emblem",
   "item.supplementaryaccessories.stopwatch": "Stopwatch",
+  "item.supplementaryaccessories.shackle": "Shackle",
 
   "trinkets.slot.hand.wrist": "Wrist",
+
+  "text.autoconfig.supplementaryaccessories.title": "Supplementary Accessories configuration",
+  "text.autoconfig.supplementaryaccessories.option.unit": "Stopwatch speed unit",
 
   "Aglet": "§a2% §rmovement speed",
   "Balloon": "Slower §9falling §rand no fall §5damage",
@@ -56,5 +60,6 @@
   "FrogFlipper": "§5Jump §rheight §3increased §rand Faster §9swimming",
   "BlackBelt": "immunity to §8wither §reffect",
   "WarriorEmblem": "Attack §5damage §rincreased by §35%",
-  "Stopwatch": "Shows players §6movement §5speed"
+  "Stopwatch": "Shows players §6movement §5speed",
+  "Shackle": "Adds §510% §rto armor §3toughness."
 }

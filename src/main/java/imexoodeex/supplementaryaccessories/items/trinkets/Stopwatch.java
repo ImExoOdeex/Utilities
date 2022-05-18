@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
+import imexoodeex.supplementaryaccessories.config.ClothConfig;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -20,8 +21,6 @@ import org.jetbrains.annotations.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.UUID;
-
-import static imexoodeex.supplementaryaccessories.SupplementaryAccessories.LOGGER;
 
 public class Stopwatch extends TrinketItem {
     public Stopwatch(Settings settings) {
@@ -40,7 +39,6 @@ public class Stopwatch extends TrinketItem {
 
         DecimalFormat dec = new DecimalFormat("#0.00");
         PlayerEntity player = (PlayerEntity) entity;
-        World world = player.world;
         isEquipped = true;
         Vec3d pos = player.getPos();
         a++;
@@ -56,9 +54,8 @@ public class Stopwatch extends TrinketItem {
         double distance = lastPos.distanceTo(pos);
         double fixedDis = distance * 2;
 
-        // to km/h
-        /*double km = fixedDis * 3.6;
-        String formattedSpeedKm = dec.format(km);*/
+
+
 
         String formattedSpeed = dec.format(fixedDis);
 

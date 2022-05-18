@@ -19,6 +19,9 @@
     ],
     "main": [
       "imexoodeex.supplementaryaccessories.SupplementaryAccessories"
+    ],
+    "modmenu": [
+      "imexoodeex.supplementaryaccessories.config.ModMenuScreen"
     ]
   },
   "mixins": [

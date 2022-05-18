@@ -1,5 +1,6 @@
 package imexoodeex.supplementaryaccessories.registers;
 
+import dev.emi.trinkets.api.TrinketItem;
 import imexoodeex.supplementaryaccessories.items.trinkets.*;
 import imexoodeex.supplementaryaccessories.util.ModItemGroup;
 import net.minecraft.item.Item;
@@ -10,10 +11,10 @@ import static imexoodeex.supplementaryaccessories.items.SAItems.registerItems;
 public class ItemRegister {
 
     private static final Item.Settings createGroup = new Item.Settings().group(ModItemGroup.SUPPLEMENTARY_ACCESSORIES).maxCount(1).maxDamage(100);
-    //TODO: change hamburger cap to chef hat
     public static Item spectre_boots = new SpectreBoots(createGroup.rarity(Rarity.EPIC));
     public static Item combatshield = new CombatShield(createGroup.rarity(Rarity.EPIC));
     public static Item obsidianshield = new ObsidianShield(createGroup.rarity(Rarity.EPIC));
+    public static Item mininghelmet = new MiningHelmet(createGroup.rarity(Rarity.EPIC));
 
     public static Item rocket_boots = new RocketBoots(createGroup.rarity(Rarity.RARE));
     public static Item hermes_boots = new HermesBoots(createGroup.rarity(Rarity.RARE));
@@ -25,9 +26,10 @@ public class ItemRegister {
     public static Item horseshoe = new Horseshoe(createGroup.rarity(Rarity.UNCOMMON));
     public static Item frogleg = new FrogLeg(createGroup.rarity(Rarity.UNCOMMON));
     public static Item frogflipper = new FrogFlipper(createGroup.rarity(Rarity.UNCOMMON));
-
     public static Item mask = new Mask(createGroup.rarity(Rarity.UNCOMMON));
+
     public static Item blindfold = new Blindfold(createGroup.rarity(Rarity.COMMON));
+    public static Item shackle = new Shackle(createGroup.rarity(Rarity.COMMON));
     public static Item vitamins = new Vitamins(createGroup.rarity(Rarity.COMMON));
     public static Item chefhat = new HamburgerCap(createGroup.rarity(Rarity.COMMON));
     public static Item aglet = new Aglet(createGroup.rarity(Rarity.COMMON));
@@ -64,13 +66,15 @@ public class ItemRegister {
         registerItems("radar", radar);
         registerItems("gps", gps);
         registerItems("watch", watch);
+        registerItems("stopwatch", stopwatch);
         registerItems("vitamins", vitamins);
         registerItems("flipper", flipper);
         registerItems("frogleg", frogleg);
         registerItems("frogflipper", frogflipper);
         registerItems("blackbelt", blackbelt);
         registerItems("warrioremblem", warrioremblem);
-        registerItems("stopwatch", stopwatch);
+        registerItems("shackle", shackle);
+        registerItems("mininghelmet", mininghelmet);
 //        registerItems("treasurebag", treasurebag);
     }
 }
