@@ -1,5 +1,6 @@
 package imexoodeex.supplementaryaccessories.util;
 
+import imexoodeex.supplementaryaccessories.config.ClothConfig;
 import imexoodeex.supplementaryaccessories.registers.ItemRegister;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
@@ -134,6 +135,7 @@ public class LootTablesModify {
     // all items to chest loot
     private static void registerMultipleLoot(Identifier id, FabricLootSupplierBuilder supplier, Identifier name) {
         if (name.equals(id)) {
+            if (!ClothConfig.decreased_loot) {
             FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
 
@@ -275,13 +277,200 @@ public class LootTablesModify {
 
                     .with(ItemEntry.builder(Items.AIR))
                     .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build());
-
-            //Air = 21 50%
-            //Items = 21 50%
-            //All = 42
-
-
             supplier.withPool(poolBuilder.build());
+            } else if (ClothConfig.decreased_loot) {
+                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+
+                        .with(ItemEntry.builder(ItemRegister.aglet))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.balloon))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.bandofregeneration))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.bezoar))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.blackbelt))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.blindfold))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.cloudinabottle))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.combatshield))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.feralclaws))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.flipper))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.frogleg))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.chefhat))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.horseshoe))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.mask))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.hermes_boots))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.rocket_boots))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.vitamins))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.warrioremblem))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.watch))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.gps))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(ItemRegister.radar))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build())
+
+
+                        .with(ItemEntry.builder(Items.AIR))
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 1f)).build());
+
+                supplier.withPool(poolBuilder.build());
+            }
+
+
+
+
+
         }
     }
 
@@ -312,6 +501,7 @@ public class LootTablesModify {
             registerMultipleLoot(id, supplier, MINESHAFT_CHEST_ID);
             registerMultipleLoot(id, supplier, DESERT_CHEST_ID);
 
+            if (ClothConfig.loot_in_village) {
             //village
             registerMultipleLoot(id, supplier, VILLAGE_ARMORER_CHEST_ID);
             registerMultipleLoot(id, supplier, VILLAGE_BUTCHER_CHEST_ID);
@@ -329,6 +519,7 @@ public class LootTablesModify {
             registerMultipleLoot(id, supplier, VILLAGE_TEMPLE_CHEST_ID);
             registerMultipleLoot(id, supplier, VILLAGE_TOOLSMITH_CHEST_ID);
             registerMultipleLoot(id, supplier, VILLAGE_WEAPONSMITH_CHEST_ID);
+            }
         }));
     }
 }

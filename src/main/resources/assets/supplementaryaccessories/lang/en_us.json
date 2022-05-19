@@ -32,6 +32,8 @@
 
   "text.autoconfig.supplementaryaccessories.title": "Supplementary Accessories configuration",
   "text.autoconfig.supplementaryaccessories.option.unit": "Stopwatch speed unit",
+  "text.autoconfig.supplementaryaccessories.option.loot_in_village": "Loot in village chests",
+  "text.autoconfig.supplementaryaccessories.option.decreased_loot": "Decreased loot",
 
   "Aglet": "§a2% §rmovement speed",
   "Balloon": "Slower §9falling §rand no fall §5damage",

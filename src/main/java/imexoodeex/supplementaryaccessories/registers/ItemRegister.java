@@ -14,7 +14,7 @@ public class ItemRegister {
     public static Item spectre_boots = new SpectreBoots(createGroup.rarity(Rarity.EPIC));
     public static Item combatshield = new CombatShield(createGroup.rarity(Rarity.EPIC));
     public static Item obsidianshield = new ObsidianShield(createGroup.rarity(Rarity.EPIC));
-    public static Item mininghelmet = new MiningHelmet(createGroup.rarity(Rarity.EPIC));
+//    public static Item mininghelmet = new MiningHelmet(createGroup.rarity(Rarity.EPIC));
 
     public static Item rocket_boots = new RocketBoots(createGroup.rarity(Rarity.RARE));
     public static Item hermes_boots = new HermesBoots(createGroup.rarity(Rarity.RARE));
@@ -74,7 +74,7 @@ public class ItemRegister {
         registerItems("blackbelt", blackbelt);
         registerItems("warrioremblem", warrioremblem);
         registerItems("shackle", shackle);
-        registerItems("mininghelmet", mininghelmet);
+//        registerItems("mininghelmet", mininghelmet);
 //        registerItems("treasurebag", treasurebag);
     }
 }

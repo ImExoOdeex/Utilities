@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Stopwatch extends TrinketItem {
@@ -32,6 +33,7 @@ public class Stopwatch extends TrinketItem {
     public static String text = "";
 
     int a = 0;
+    String unit = "";
     Vec3d lastPos = new Vec3d(0, 0, 0);
 
     @Override
@@ -54,13 +56,21 @@ public class Stopwatch extends TrinketItem {
         double distance = lastPos.distanceTo(pos);
         double fixedDis = distance * 2;
 
-
-
+        if (Objects.equals(ClothConfig.unit, "kph")) {
+            fixedDis *= 3.6;
+            unit = "km/h";
+        } else if (Objects.equals(ClothConfig.unit, "mps")) {
+            fixedDis *= 1;
+            unit = "m/s";
+        } else if (Objects.equals(ClothConfig.unit, "mph")) {
+            fixedDis *= 2.23;
+            unit = "mph";
+        }
 
         String formattedSpeed = dec.format(fixedDis);
 
         if (a == 20) {
-            text = formattedSpeed + " blocks/s";
+            text = formattedSpeed + " " + unit;
         }
 
 
