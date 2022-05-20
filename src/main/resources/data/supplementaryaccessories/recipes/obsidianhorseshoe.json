@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:obsidian"
+    },
+    "O": {
+      "item": "utilities:horseshoe"
+    }
+  },
+  "result": {
+    "item": "utilities:obsidianhorseshoe",
+    "count": 1
+  }
+}
