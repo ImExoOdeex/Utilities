@@ -6,10 +6,10 @@ Enchance your game by adding some helpfull accessories to your character. Rich c
 - ~~add config to mod (speed unit, loot drop in chests)~~ (DONE)
 - some new items
 
-> [curseforge](https://www.curseforge.com/minecraft/mc-mods/supplementary-accessories)
+> [curseforge](https://www.curseforge.com/minecraft/mc-mods/equippable-utilities)
 > 
-> [modrinth](https://modrinth.com/mod/suac)
+> [modrinth](https://modrinth.com/mod/utilities)
 > 
-> [website/docs](https://www.cebuliony.pl/supplementary_accessories)
+> [website/docs](https://www.cebuliony.pl/utilities)
 > 
 ![](https://ik.imagekit.io/o532f5vcp38/SAeq_EE5uhMcrT.png?ik-sdk-version=javascript-1.4.3&updatedAt=1652531132889)
