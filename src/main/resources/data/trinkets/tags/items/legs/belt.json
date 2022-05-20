@@ -2,8 +2,8 @@
   "replace": false,
   "amount": 1,
   "values": [
-    "supplementaryaccessories:cloudinabottle",
-    "supplementaryaccessories:vitamins",
-    "supplementaryaccessories:blackbelt"
+    "utilities:cloudinabottle",
+    "utilities:vitamins",
+    "utilities:blackbelt"
   ]
 }

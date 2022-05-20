@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:obsidian"
+    },
+    "O": {
+      "item": "utilities:combatshield"
+    }
+  },
+  "result": {
+    "item": "utilities:obsidianshield",
+    "count": 1
+  }
+}

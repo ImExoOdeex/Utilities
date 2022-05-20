@@ -2,13 +2,14 @@
   "replace": false,
   "amount": 2,
   "values": [
-    "supplementaryaccessories:spectre_boots",
-    "supplementaryaccessories:horseshoe",
-    "supplementaryaccessories:flipper",
-    "supplementaryaccessories:spectre_boots",
-    "supplementaryaccessories:rocket_boots",
-    "supplementaryaccessories:hermes_boots",
-    "supplementaryaccessories:frogleg",
-    "supplementaryaccessories:frogflipper"
+    "utilities:spectre_boots",
+    "utilities:horseshoe",
+    "utilities:obsidianhorseshoe",
+    "utilities:flipper",
+    "utilities:spectre_boots",
+    "utilities:rocket_boots",
+    "utilities:hermes_boots",
+    "utilities:frogleg",
+    "utilities:frogflipper"
   ]
 }

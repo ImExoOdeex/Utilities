@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "supplementaryaccessories:gps",
-    "supplementaryaccessories:watch",
-    "supplementaryaccessories:radar",
-    "supplementaryaccessories:stopwatch",
-    "supplementaryaccessories:shackle"
+    "utilities:gps",
+    "utilities:watch",
+    "utilities:radar",
+    "utilities:stopwatch",
+    "utilities:shackle"
   ]
 }

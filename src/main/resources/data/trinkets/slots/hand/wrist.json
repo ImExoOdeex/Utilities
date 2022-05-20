@@ -1,4 +1,4 @@
-{
+  {
   "replace": false,
   "amount": 1,
   "order": 0,
@@ -7,4 +7,4 @@
   "validator_predicates": "trinkets:tag",
   "quick_move_predicates": "trinkets:all",
   "tooltip_predicates": "trinkets:all"
-}
+  }

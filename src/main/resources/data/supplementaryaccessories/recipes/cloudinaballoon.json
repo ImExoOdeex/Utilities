@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "utilities:hermes_boots"
+      "item": "utilities:balloon"
     },
     {
-      "item": "utilities:rocket_boots"
+      "item": "utilities:cloudinabottle"
     }
   ],
   "result": {
-    "item": "utilities:spectre_boots",
+    "item": "utilities:cloudinaballoon",
     "count": 1
   }
 }

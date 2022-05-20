@@ -2,10 +2,11 @@
   "replace": false,
   "amount": 1,
   "values": [
-    "supplementaryaccessories:balloon",
-    "supplementaryaccessories:cloudinaballoon",
-    "supplementaryaccessories:feralclaws",
-    "supplementaryaccessories:combatshield",
-    "supplementaryaccessories:obsidianshield"
+    "utilities:balloon",
+    "utilities:cloudinaballoon",
+    "utilities:feralclaws",
+    "utilities:berserkerglove",
+    "utilities:combatshield",
+    "utilities:obsidianshield"
   ]
 }

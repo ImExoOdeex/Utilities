@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "supplementaryaccessories",
+  "id": "utilities",
   "version": "${version}",
-  "name": "Supplementary Accessories",
+  "name": "Utilities",
   "description": "Terraria style mod. Adds various accessories to the game. Explore world to make your game more interesting.",
   "authors": ["imexoodeex"],
   "contact": {
     "homepage": "https://www.cebuliony.pl/supplementary_accessories",
-    "sources": "https://github.com/ImExoOdeex/SupplementaryAccessories",
-    "issues": "https://github.com/ImExoOdeex/SupplementaryAccessories/issues"
+    "sources": "https://github.com/ImExoOdeex/utilities",
+    "issues": "https://github.com/ImExoOdeex/utilities/issues"
   },
   "license": "LGPL-3.0-only",
-  "icon": "assets/SupplementaryAccessories/icon.png",
+  "icon": "assets/utilities/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "imexoodeex.supplementaryaccessories.client.SupplementaryAccessoriesClient"
+      "imexoodeex.utilities.client.utilitiesClient"
     ],
     "main": [
-      "imexoodeex.supplementaryaccessories.SupplementaryAccessories"
+      "imexoodeex.utilities.utilities"
     ],
     "modmenu": [
-      "imexoodeex.supplementaryaccessories.config.ModMenuScreen"
+      "imexoodeex.utilities.config.ModMenuScreen"
     ]
   },
   "mixins": [
-    "SupplementaryAccessories.mixins.json"
+    "utilities.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",

@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "utilities:hermes_boots"
+      "item": "utilities:frogleg"
     },
     {
-      "item": "utilities:rocket_boots"
+      "item": "utilities:flipper"
     }
   ],
   "result": {
-    "item": "utilities:spectre_boots",
+    "item": "utilities:frogflipper",
     "count": 1
   }
 }
