@@ -1,4 +1,4 @@
-# SupplementaryAccessories
+# Utilities
 Enchance your game by adding some helpfull accessories to your character. Rich coded mod, that contains a lot of friendly-use systems.
 
 > Planned features:
