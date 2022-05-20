@@ -2,7 +2,8 @@
 Enchance your game by adding some helpfull accessories to your character. Rich coded mod, that contains a lot of friendly-use systems.
 
 > Planned features:
-- add config to mod (speed unit, loot drop in chests) (WIP)
+
+- ~~add config to mod (speed unit, loot drop in chests)~~ (DONE)
 - some new items
 
 > [curseforge](https://www.curseforge.com/minecraft/mc-mods/supplementary-accessories)
