@@ -20,8 +20,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.utilities.utilities.LOGGER;
-
 public class CloudInABottle extends TrinketItem {
     public CloudInABottle(Settings settings) {
         super(settings);
@@ -40,43 +38,53 @@ public class CloudInABottle extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
+        boolean isActive = false;
 
         World world = entity.world;
         PlayerEntity player = (PlayerEntity) entity;
 
+
         // double jump
         /*
-        *
-        *
-        * a little of double jump logic borrowed from https://github.com/genandnic/Wall-Jump/blob/1.18.1/src/main/java/genandnic/walljump/client/DoubleJumpLogic.java
-        *
-        *
-        * */
+         *
+         *
+         * a little of double jump logic borrowed from https://github.com/genandnic/Wall-Jump/blob/1.18.1/src/main/java/genandnic/walljump/client/DoubleJumpLogic.java
+         *
+         *
+         * */
 
-        if (entity.isOnGround() || entity.hasVehicle()) {
-            jumpCount = getMultiJumps();
-        } else if (isJumping) {
-            if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-                player.jump();
-                player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
-                world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-                CloudInABottleParticles.spawnCloudParticles(entity, world);
-                entity.fallDistance = 0.0F;
-                jumpCount--;
+        if (world.isClient()) {
+            boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+            if (entity.isOnGround() || entity.hasVehicle()) {
+                jumpCount = getMultiJumps();
+            } else if (isJumping) {
+                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                    player.jump();
+                    player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
+                    world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+                    CloudInABottleParticles.spawnCloudParticles(entity, world);
+                    isActive = true;
+                    jumpCount--;
+                }
+                jumpKey = true;
+            } else {
+                isActive = false;
+                jumpKey = false;
             }
-            jumpKey = true;
-        } else {
-            jumpKey = false;
+        }
+
+        if (isActive) {
+            player.fallDistance = 0.0F;
         }
 
         super.tick(stack, slot, entity);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

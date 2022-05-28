@@ -38,7 +38,7 @@ public class RocketBoots extends TrinketItem {
         return jumpCount;
     }
 
-    private static void fly(PlayerEntity player, double yVelocity, World world, Vec3d v) {
+    private static void fly(PlayerEntity player, double yVelocity, Vec3d v) {
         fallFlyingA += 1;
         if (!player.isFallFlying()) {
             player.setVelocity(v.getX(), (yVelocity * 0.9) + 0.1, v.getZ());
@@ -74,10 +74,9 @@ public class RocketBoots extends TrinketItem {
                 fallFlyingA = 0;
             } else if (isJumping && !isGrounded && !player.isClimbing() && FLIGHTTIME >= 0) {
                 if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-                    fly(player, yVelocity, world, v);
-                    isActive = true;
+                    fly(player, yVelocity, v);
                 } else if (jumpCount <= 0) {
-                    fly(player, yVelocity, world, v);
+                    fly(player, yVelocity, v);
                     isActive = true;
                 }
                 jumpKey = true;

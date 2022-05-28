@@ -23,7 +23,7 @@ public class Watch extends TrinketItem {
 
     public String setText(World world) {
 
-        if (!world.isClient) {
+        if (world.isClient) {
 
             /*
              * 12 542 - night start
@@ -60,7 +60,7 @@ public class Watch extends TrinketItem {
 
     public static String setText1(World world) {
 
-        if (!world.isClient) {
+        if (world.isClient) {
             Long ticksOfDay = world.getTimeOfDay();
             Long ticksOfDayMod = ticksOfDay % 24000;
 

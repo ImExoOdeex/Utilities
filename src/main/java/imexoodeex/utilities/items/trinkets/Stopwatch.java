@@ -25,6 +25,7 @@ public class Stopwatch extends TrinketItem {
     }
 
     public static String text = "";
+    public static String text1 = "";
     int a = 0;
     String unit = "";
 
@@ -33,37 +34,40 @@ public class Stopwatch extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        DecimalFormat dec = new DecimalFormat("#0.00");
-        PlayerEntity player = (PlayerEntity) entity;
-        Vec3d pos = player.getPos();
-        a++;
+        World world = entity.world;
+        if (world.isClient()) {
 
-        if (a > 20) {
-            a = 0;
-        }
+            DecimalFormat dec = new DecimalFormat("#0.00");
+            PlayerEntity player = (PlayerEntity) entity;
+            Vec3d pos = player.getPos();
+            a++;
 
-        if (a == 0) {
-            lastPos = player.getPos();
-        }
+            if (a > 20) {
+                a = 0;
+            }
 
-        double distance = lastPos.distanceTo(pos);
-        double fixedDis = distance * 2;
+            if (a == 0) {
+                lastPos = player.getPos();
+            }
 
-        if (utilities.CONFIG.unit == ClothConfig.UNIT.KPH) {
-            fixedDis *= 3.6;
-            unit = "km/h";
-        } else if (utilities.CONFIG.unit == ClothConfig.UNIT.MPS) {
-            fixedDis *= 1;
-            unit = "m/s";
-        } else if (utilities.CONFIG.unit == ClothConfig.UNIT.MPH) {
-            fixedDis *= 2.23;
-            unit = "mph";
-        }
+            double distance = lastPos.distanceTo(pos);
 
-        String formattedSpeed = dec.format(fixedDis);
+            if (utilities.CONFIG.unit == ClothConfig.UNIT.KPH) {
+                distance *= 3.6;
+                unit = "km/h";
+            } else if (utilities.CONFIG.unit == ClothConfig.UNIT.MPS) {
+                distance *= 1;
+                unit = "m/s";
+            } else if (utilities.CONFIG.unit == ClothConfig.UNIT.MPH) {
+                distance *= 2.23;
+                unit = "mph";
+            }
 
-        if (a == 20) {
-            text = formattedSpeed + " " + unit;
+            String formattedSpeed = dec.format(distance);
+
+            if (a == 20) {
+                text = formattedSpeed + " " + unit;
+            }
         }
 
 

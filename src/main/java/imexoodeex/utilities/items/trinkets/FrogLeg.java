@@ -22,12 +22,15 @@ public class FrogLeg extends TrinketItem {
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
-        Vec3d vec = entity.getVelocity();
-        double y = vec.y;
+        World world = entity.world;
+        if (world.isClient()) {
+            boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+            Vec3d vec = entity.getVelocity();
+            double y = vec.y;
 
-        if (isJumping && y > 0.0D) {
-            entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
+            if (isJumping && y > 0.0D) {
+                entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
+            }
         }
 
         super.tick(stack, slot, entity);

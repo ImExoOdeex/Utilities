@@ -22,12 +22,14 @@ public class FrogFlipper extends TrinketItem {
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
         Vec3d vec = entity.getVelocity();
         double y = vec.y;
-
-        if (isJumping && !entity.isSwimming() && y > 0.0D) {
-            entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
+        World world = entity.world;
+        if (world.isClient()) {
+            boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+            if (isJumping && !entity.isSwimming() && y > 0.0D) {
+                entity.setVelocity(entity.getVelocity().add(0, 0.04, 0));
+            }
         }
 
         if (entity.isInSwimmingPose()) {
@@ -40,9 +42,10 @@ public class FrogFlipper extends TrinketItem {
 
         super.tick(stack, slot, entity);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

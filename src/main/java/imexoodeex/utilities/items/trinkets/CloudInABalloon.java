@@ -42,27 +42,29 @@ public class CloudInABalloon extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
         World world = entity.world;
         PlayerEntity player = (PlayerEntity) entity;
 
-        // double jump
-        if (entity.isOnGround() || entity.hasVehicle()) {
-            jumpCount = getMultiJumps();
-        } else if (isJumping) {
-            if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-                player.jump();
-                player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
-                world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-                CloudInABottleParticles.spawnCloudParticles(entity, world);
-                entity.fallDistance = 0.0F;
-                jumpCount--;
+        if (world.isClient()) {
+            boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+            // double jump
+            if (entity.isOnGround() || entity.hasVehicle()) {
+                jumpCount = getMultiJumps();
+            } else if (isJumping) {
+                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                    player.jump();
+                    player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+                    world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+                    CloudInABottleParticles.spawnCloudParticles(entity, world);
+                    entity.fallDistance = 0.0F;
+                    jumpCount--;
+                }
+                jumpKey = true;
+            } else {
+                jumpKey = false;
             }
-            jumpKey = true;
-        } else {
-            jumpKey = false;
         }
 
         Vec3d vec = player.getVelocity();
@@ -85,7 +87,6 @@ public class CloudInABalloon extends TrinketItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
         LivingEntity entity1 = (LivingEntity) entity;
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
@@ -97,21 +98,26 @@ public class CloudInABalloon extends TrinketItem {
                 player.setVelocity(vec.x, vec.y + add, vec.z);
                 entity.fallDistance *= 0.5f;
             }
+
+
             // double jump
-            if (entity.isOnGround() || entity.hasVehicle()) {
-                jumpCount = getMultiJumps();
-            } else if (isJumping) {
-                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-                    player.jump();
-                    player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
-                    world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-                    CloudInABottleParticles.spawnCloudParticles(entity1, world);
-                    entity.fallDistance = 0.0F;
-                    jumpCount--;
+            if (world.isClient()) {
+                boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+                if (entity.isOnGround() || entity.hasVehicle()) {
+                    jumpCount = getMultiJumps();
+                } else if (isJumping) {
+                    if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                        player.jump();
+                        player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+                        world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+                        CloudInABottleParticles.spawnCloudParticles(entity1, world);
+                        entity.fallDistance = 0.0F;
+                        jumpCount--;
+                    }
+                    jumpKey = true;
+                } else {
+                    jumpKey = false;
                 }
-                jumpKey = true;
-            } else {
-                jumpKey = false;
             }
         }
 
@@ -120,7 +126,7 @@ public class CloudInABalloon extends TrinketItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

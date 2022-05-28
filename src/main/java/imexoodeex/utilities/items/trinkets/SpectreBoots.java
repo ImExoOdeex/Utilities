@@ -3,10 +3,10 @@ package imexoodeex.utilities.items.trinkets;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import imexoodeex.utilities.client.particles.HermesBootsParticles;
-import imexoodeex.utilities.client.particles.RocketBootsParticles;
 import imexoodeex.utilities.client.particles.SpectreBootsParticles;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -46,12 +46,11 @@ public class SpectreBoots extends TrinketItem {
         a = 0;
     }
 
-    private static void fly(LivingEntity entity, double yVelocity, World world, Vec3d v) {
+    private static void fly(LivingEntity entity, double yVelocity, Vec3d v) {
         fallFlyingA += 1;
         if (!entity.isFallFlying()) {
             entity.fallDistance = 0.0F;
             entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.1, v.getZ());
-            SpectreBootsParticles.spawnRocketParticles(entity, world);
             jumpCount--;
             FLIGHTTIME--;
         } else {
@@ -67,33 +66,38 @@ public class SpectreBoots extends TrinketItem {
 
         //some functions
         World world = entity.world;
+        boolean isActive = false;
         PlayerEntity player = (PlayerEntity) entity;
         boolean isSprinting = entity.isSprinting();
         boolean isGrounded = entity.isOnGround();
-        boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
-        boolean isRocketFlying = isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME > 0;
         Vec3d v = entity.getVelocity();
-        double yVelocity = v.getY();
 
-        // rocket flight
-        if (entity.isSwimming() && entity.isInSwimmingPose()) {
-            entity.addVelocity(0, 0, 0);
-        } else if (entity.isSubmergedInWater() && isJumping) {
-            entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.01, v.getZ());
-            RocketBootsParticles.spawnRocketParticles(entity, world);
-        } else if (entity.isOnGround() || entity.hasVehicle()) {
-            jumpCount = getMultiJumps();
-            fallFlyingA = 0;
-        } else if (isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME >= 0) {
-            if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
-                fly(entity, yVelocity, world, v);
-            } else if (jumpCount <= 0) {
-                fly(entity, yVelocity, world, v);
+        if (world.isClient()) {
+            boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
+            double yVelocity = v.getY();
+
+            // rocket flight
+            if (entity.isSwimming() && entity.isInSwimmingPose()) {
+                entity.addVelocity(0, 0, 0);
+            } else if (entity.isSubmergedInWater() && isJumping) {
+                entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.01, v.getZ());
+            } else if (entity.isOnGround() || entity.hasVehicle()) {
+                jumpCount = getMultiJumps();
+                fallFlyingA = 0;
+            } else if (isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME >= 0) {
+                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                    fly(entity, yVelocity, v);
+                    isActive = true;
+                } else if (jumpCount <= 0) {
+                    fly(entity, yVelocity, v);
+                    isActive = true;
+                }
+                jumpKey = true;
+            } else {
+                jumpKey = false;
             }
-            jumpKey = true;
-        } else {
-            jumpKey = false;
         }
+
 
         // hermes speed
         if (isSprinting && isGrounded) {
@@ -124,15 +128,31 @@ public class SpectreBoots extends TrinketItem {
             HermesBootsParticles.spawnRocketParticles(entity, world);
         }
 
-        if (!isRocketFlying) {
-            FLIGHTTIME += 0.15;
+        if (FLIGHTTIME > -10) {
+            FLIGHTTIME += 0.2;
         }
 
         if (FLIGHTTIME > flightTimeMax) {
             FLIGHTTIME = flightTimeMax;
         }
 
+        if (isActive) {
+            SpectreBootsParticles.spawnRocketParticles(player, world);
+        }
+        player.fallDistance = 0.0F;
+
         super.tick(stack, slot, entity);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+
+        FLIGHTTIME += 0.2;
+        if (FLIGHTTIME > flightTimeMax) {
+            FLIGHTTIME = flightTimeMax;
+        }
+
+        super.inventoryTick(stack, world, entity, slot, selected);
     }
 
     @Override

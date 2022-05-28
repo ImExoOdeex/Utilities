@@ -1,7 +1,5 @@
 package imexoodeex.utilities.items.trinkets;
 
-import dev.emi.trinkets.TrinketsClient;
-import dev.emi.trinkets.TrinketsNetwork;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;
@@ -29,8 +27,8 @@ public class Balloon extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         PlayerEntity player = (PlayerEntity) entity;
-        Vec3d vec = player.getVelocity();
-        if (!player.isSneaking()) {
+        if (!player.isSneaking() && !player.isSubmergedInWater()) {
+            Vec3d vec = player.getVelocity();
             player.setVelocity(vec.x, vec.y + add, vec.z);
             entity.fallDistance *= 0.5f;
         }
@@ -50,12 +48,10 @@ public class Balloon extends TrinketItem {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 
         PlayerEntity player = (PlayerEntity) entity;
-        if (selected && !isHolding) {
+        if (selected && !isHolding && !player.isSneaking() && !player.isSubmergedInWater()) {
             Vec3d vec = player.getVelocity();
-            if (!player.isSneaking()) {
-                player.setVelocity(vec.x, vec.y + add, vec.z);
-                entity.fallDistance *= 0.5f;
-            }
+            player.setVelocity(vec.x, vec.y + add, vec.z);
+            entity.fallDistance *= 0.5f;
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }

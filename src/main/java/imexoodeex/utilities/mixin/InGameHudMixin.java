@@ -41,10 +41,13 @@ public abstract class InGameHudMixin {
 
         if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.stopwatch)) {
             TEXT = Stopwatch.text;
+            TEXT2 = Stopwatch.text1;
         } else if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.gps)) {
             TEXT = GPS.text;
+            TEXT2 = GPS.text1;
         } else if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.radar)) {
             TEXT = Radar.text;
+            TEXT2 = Radar.text1;
         } else if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.watch)) {
             TEXT = Watch.text;
             TEXT2 = Watch.text1;

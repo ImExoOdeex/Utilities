@@ -19,6 +19,7 @@ public class GPS extends TrinketItem {
     }
 
     public static String text = null;
+    public static String text1 = "";
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
