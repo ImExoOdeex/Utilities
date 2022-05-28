@@ -4,7 +4,8 @@ Enchance your game by adding some helpfull accessories to your character. Rich c
 > Planned features:
 
 - ~~add config to mod (speed unit, loot drop in chests)~~ (DONE)
-- some new items
+- ~~server compatibilioty (network)~~ (DONE)
+- some new items (opitional, there are many items right now)
 
 > [curseforge](https://www.curseforge.com/minecraft/mc-mods/equippable-utilities)
 > 
