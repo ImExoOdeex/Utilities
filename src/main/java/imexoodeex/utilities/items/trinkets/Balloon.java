@@ -1,5 +1,7 @@
 package imexoodeex.utilities.items.trinkets;
 
+import dev.emi.trinkets.TrinketsClient;
+import dev.emi.trinkets.TrinketsNetwork;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.item.TooltipContext;

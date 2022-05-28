@@ -1,9 +1,11 @@
 package imexoodeex.utilities.client;
 
+import imexoodeex.utilities.network.ServerNetworkHandler;
 import imexoodeex.utilities.registers.ParticleRegister;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.particle.FlameParticle;
@@ -14,6 +16,19 @@ import net.minecraft.util.Identifier;
 public class utilitiesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+
+        ClientPlayNetworking.registerGlobalReceiver(ServerNetworkHandler.ISJUMPING_PACKET, (client, handler, buf, responseSender) -> {
+            boolean isJumping = buf.readBoolean();
+            client.execute(() -> {
+
+                if (isJumping) {
+                    assert client.player != null;
+                    client.player.setJumping(true);
+                }
+                
+            });
+        });
+
         //overspeed particle
         ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
             registry.register(new Identifier("utilities", "particle/overspeed"));

@@ -36,6 +36,8 @@
   "text.autoconfig.utilities.option.unit": "Stopwatch speed unit",
   "text.autoconfig.utilities.option.loot_in_village": "Loot in village chests",
   "text.autoconfig.utilities.option.decreased_loot": "Decreased loot",
+  "text.autoconfig.utilities.option.disable_loot": "Disable loot",
+  "text.autoconfig.utilities.option.text_location": "Screen text location",
 
   "Aglet": "§a2% §rmovement speed",
   "Balloon": "Slower §9falling §rand no fall §5damage",
@@ -58,8 +60,6 @@
   "Blindfold": "Immunity to §4blind §reffect",
   "Vitamins": "Immunity to §9weakness §reffect",
   "Radar": "Shows yours §3experience §rprogress",
-  "on": "Is equipped: §2Yes",
-  "off": "Is equipped: §4No",
   "CloudInABalloon": "Slower §9falling§r, no fall §4damage §rand §2double §rjump",
   "FrogLeg": "§5Jump §rheight §3increased§r. §2Allows §rjumping §52 §rblocks. ",
   "FrogFlipper": "§5Jump §rheight §3increased §rand Faster §9swimming",
