@@ -15,6 +15,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import static imexoodeex.utilities.utilities.LOGGER;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -70,6 +71,7 @@ public class SpectreBoots extends TrinketItem {
         PlayerEntity player = (PlayerEntity) entity;
         boolean isSprinting = entity.isSprinting();
         boolean isGrounded = entity.isOnGround();
+        float customFallDistance = 0.0F;
         Vec3d v = entity.getVelocity();
 
         if (world.isClient()) {
@@ -81,23 +83,42 @@ public class SpectreBoots extends TrinketItem {
                 entity.addVelocity(0, 0, 0);
             } else if (entity.isSubmergedInWater() && isJumping) {
                 entity.setVelocity(v.getX(), (yVelocity * 0.9) + 0.01, v.getZ());
+                isActive = true;
             } else if (entity.isOnGround() || entity.hasVehicle()) {
                 jumpCount = getMultiJumps();
                 fallFlyingA = 0;
-            } else if (isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME >= 0) {
+            } else if (isJumping && !isGrounded && !entity.isClimbing() && FLIGHTTIME >= 0 && !player.getAbilities().flying) {
                 if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
                     fly(entity, yVelocity, v);
                     isActive = true;
                 } else if (jumpCount <= 0) {
                     fly(entity, yVelocity, v);
+//                    customFallDistance = 0.0F;
                     isActive = true;
                 }
                 jumpKey = true;
             } else {
+                getMultiJumps();
                 jumpKey = false;
             }
-        }
 
+
+            if (!isActive) {
+                FLIGHTTIME += 0.2;
+            }
+
+            if (FLIGHTTIME > flightTimeMax) {
+                FLIGHTTIME = flightTimeMax;
+            }
+
+            //creative flight
+            if (player.isCreative()) {
+                FLIGHTTIME = flightTimeMax;
+            }
+
+            LOGGER.info("FLIGHTTIME: " + FLIGHTTIME  + "  |  fall distance: " + player.fallDistance + "  |  jump count: " + jumpCount);
+
+        }
 
         // hermes speed
         if (isSprinting && isGrounded) {
@@ -128,18 +149,10 @@ public class SpectreBoots extends TrinketItem {
             HermesBootsParticles.spawnRocketParticles(entity, world);
         }
 
-        if (FLIGHTTIME > -10) {
-            FLIGHTTIME += 0.2;
-        }
-
-        if (FLIGHTTIME > flightTimeMax) {
-            FLIGHTTIME = flightTimeMax;
-        }
-
         if (isActive) {
             SpectreBootsParticles.spawnRocketParticles(player, world);
         }
-        player.fallDistance = 0.0F;
+        player.fallDistance = customFallDistance;
 
         super.tick(stack, slot, entity);
     }

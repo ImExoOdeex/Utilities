@@ -69,10 +69,11 @@ public class RocketBoots extends TrinketItem {
                 player.addVelocity(0, 0, 0);
             } else if (player.isSubmergedInWater() && isJumping) {
                 player.setVelocity(v.getX(), (yVelocity * 0.9) + 0.01, v.getZ());
+                isActive = true;
             } else if (player.isOnGround() || player.hasVehicle()) {
                 jumpCount = getMultiJumps();
                 fallFlyingA = 0;
-            } else if (isJumping && !isGrounded && !player.isClimbing() && FLIGHTTIME >= 0) {
+            } else if (isJumping && !isGrounded && !player.isClimbing() && FLIGHTTIME >= 0 && !player.getAbilities().flying) {
                 if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
                     fly(player, yVelocity, v);
                 } else if (jumpCount <= 0) {
@@ -96,7 +97,7 @@ public class RocketBoots extends TrinketItem {
         if (isActive) {
             RocketBootsParticles.spawnRocketParticles(player, world);
         }
-        player.fallDistance = 0.0F;
+        player.fallDistance *= 0.5;
 
         super.tick(stack, slot, entity);
     }

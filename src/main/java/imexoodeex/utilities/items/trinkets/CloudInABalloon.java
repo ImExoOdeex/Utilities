@@ -92,13 +92,12 @@ public class CloudInABalloon extends TrinketItem {
         double yVelocity = v.getY();
 
         PlayerEntity player = (PlayerEntity) entity;
-        if (selected && !isHolding) {
+        if (selected && !isHolding && !player.isSneaking() && !player.isSubmergedInWater() && !player.isFallFlying() && !player.getAbilities().flying) {
             Vec3d vec = player.getVelocity();
             if (!player.isSneaking()) {
                 player.setVelocity(vec.x, vec.y + add, vec.z);
                 entity.fallDistance *= 0.5f;
             }
-
 
             // double jump
             if (world.isClient()) {
