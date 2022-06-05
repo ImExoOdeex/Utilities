@@ -10,15 +10,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import static imexoodeex.utilities.utilities.LOGGER;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static imexoodeex.utilities.utilities.LOGGER;
 
 public class SpectreBoots extends TrinketItem {
 
@@ -30,6 +32,8 @@ public class SpectreBoots extends TrinketItem {
     public static double FLIGHTTIME = 7 * 20;
     private final double flightTimeMax = 7 * 20;
     private static int fallFlyingA = 0;
+    float customFallDistance = 0.0F;
+    boolean warned = false;
 
     private static int jumpCount = 0;
     private static boolean jumpKey = false;
@@ -71,7 +75,6 @@ public class SpectreBoots extends TrinketItem {
         PlayerEntity player = (PlayerEntity) entity;
         boolean isSprinting = entity.isSprinting();
         boolean isGrounded = entity.isOnGround();
-        float customFallDistance = 0.0F;
         Vec3d v = entity.getVelocity();
 
         if (world.isClient()) {
@@ -102,11 +105,6 @@ public class SpectreBoots extends TrinketItem {
                 jumpKey = false;
             }
 
-
-            if (!isActive) {
-                FLIGHTTIME += 0.2;
-            }
-
             if (FLIGHTTIME > flightTimeMax) {
                 FLIGHTTIME = flightTimeMax;
             }
@@ -116,9 +114,29 @@ public class SpectreBoots extends TrinketItem {
                 FLIGHTTIME = flightTimeMax;
             }
 
-            LOGGER.info("FLIGHTTIME: " + FLIGHTTIME  + "  |  fall distance: " + player.fallDistance + "  |  jump count: " + jumpCount);
+            if (FLIGHTTIME < 30 && !warned) {
+                player.sendMessage(new LiteralText("Low fuel!").formatted(Formatting.RED), true);
+                warned = true;
+            } else if (FLIGHTTIME < 10 && warned) {
+                player.sendMessage(new LiteralText("Low fuel!").formatted(Formatting.RED), true);
+            } else if (FLIGHTTIME > 30){
+                warned = false;
+            }
+
+            LOGGER.info("FLIGHTTIME: " + FLIGHTTIME + "  |  fall distance: " + player.fallDistance + "  |  jump count: " + jumpCount);
 
         }
+
+        if (isActive) {
+            customFallDistance = 0.0F;
+            SpectreBootsParticles.spawnRocketParticles(player, world);
+        } else {
+            customFallDistance = player.fallDistance;
+            FLIGHTTIME += 0.2;
+        }
+
+        player.fallDistance *= 0.9F;
+
 
         // hermes speed
         if (isSprinting && isGrounded) {
@@ -149,10 +167,6 @@ public class SpectreBoots extends TrinketItem {
             HermesBootsParticles.spawnRocketParticles(entity, world);
         }
 
-        if (isActive) {
-            SpectreBootsParticles.spawnRocketParticles(player, world);
-        }
-        player.fallDistance = customFallDistance;
 
         super.tick(stack, slot, entity);
     }

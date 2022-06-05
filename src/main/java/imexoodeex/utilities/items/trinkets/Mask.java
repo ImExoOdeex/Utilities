@@ -27,6 +27,8 @@ public class Mask extends TrinketItem {
             entity.setVelocity(vel.x * 1.3, vel.y, vel.z * 1.3);
         }
 
+        //TODO: fix mask bug with water and ice
+
         super.tick(stack, slot, entity);
     }
     @Override

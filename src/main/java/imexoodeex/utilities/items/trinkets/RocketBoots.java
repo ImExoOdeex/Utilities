@@ -83,7 +83,6 @@ public class RocketBoots extends TrinketItem {
                 jumpKey = true;
             } else {
                 jumpKey = false;
-                isActive = false;
             }
             // add flight time while not rocket flying
             if (FLIGHTTIME > -10) {
