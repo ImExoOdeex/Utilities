@@ -20,8 +20,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.utilities.items.trinkets.Balloon.add;
-
 public class CloudInABalloon extends TrinketItem {
     public CloudInABalloon(Settings settings) {
         super(settings);
@@ -32,7 +30,6 @@ public class CloudInABalloon extends TrinketItem {
 
     private static int getMultiJumps() {
         jumpCount = 1;
-
         return jumpCount;
     }
 
@@ -67,9 +64,8 @@ public class CloudInABalloon extends TrinketItem {
             }
         }
 
-        Vec3d vec = player.getVelocity();
         if (!player.isSneaking()) {
-            player.setVelocity(vec.x, vec.y + add, vec.z);
+            player.addVelocity(0, 0.02, 0);
             entity.fallDistance *= 0.5f;
         }
         isHolding = true;
@@ -93,9 +89,8 @@ public class CloudInABalloon extends TrinketItem {
 
         PlayerEntity player = (PlayerEntity) entity;
         if (selected && !isHolding && !player.isSneaking() && !player.isSubmergedInWater() && !player.isFallFlying() && !player.getAbilities().flying) {
-            Vec3d vec = player.getVelocity();
             if (!player.isSneaking()) {
-                player.setVelocity(vec.x, vec.y + add, vec.z);
+                player.addVelocity(0, 0.02, 0);
                 entity.fallDistance *= 0.5f;
             }
 

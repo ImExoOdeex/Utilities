@@ -80,6 +80,9 @@ public abstract class InGameHudMixin {
             }
         }
 
+//        TODO: add bars render to this
+//        https://github.com/ReviversMC/microDurability/blob/master/microdurability-1.18/src/main/java/com/github/reviversmc/microdurability/mixin/InGameHudMixin118.java
+
 
     }
 

@@ -27,7 +27,7 @@ public class RocketBoots extends TrinketItem {
 
     /* 20 tick is 1 second, so 5 * 1 sec is 5 seconds of flying*/
     public static double FLIGHTTIME = 5 * 20;
-    private final double flightTimeMax = 5 * 20;
+    public static final double flightTimeMax = 5 * 20;
     private static int fallFlyingA = 0;
 
     private static int jumpCount = 0;
@@ -96,7 +96,7 @@ public class RocketBoots extends TrinketItem {
         if (isActive) {
             RocketBootsParticles.spawnRocketParticles(player, world);
         }
-        player.fallDistance *= 0.5;
+        player.fallDistance *= 0.8;
 
         super.tick(stack, slot, entity);
     }

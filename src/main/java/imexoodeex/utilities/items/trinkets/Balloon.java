@@ -21,15 +21,13 @@ public class Balloon extends TrinketItem {
         super(settings);
     }
 
-    public static double add = 0.02;
     private static boolean isHolding = false;
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         PlayerEntity player = (PlayerEntity) entity;
         if (!player.isSneaking() && !player.isSubmergedInWater() && !player.isFallFlying() && !player.getAbilities().flying) {
-            Vec3d vec = player.getVelocity();
-            player.setVelocity(vec.x, vec.y + add, vec.z);
+            player.addVelocity(0,0.2,0);
             entity.fallDistance *= 0.5f;
         }
         isHolding = true;
@@ -49,8 +47,7 @@ public class Balloon extends TrinketItem {
 
         PlayerEntity player = (PlayerEntity) entity;
         if (selected && !isHolding && !player.isSneaking() && !player.isSubmergedInWater() && !player.isFallFlying() && !player.getAbilities().flying) {
-            Vec3d vec = player.getVelocity();
-            player.setVelocity(vec.x, vec.y + add, vec.z);
+            player.addVelocity(0,0.2,0);
             entity.fallDistance *= 0.5f;
         }
         super.inventoryTick(stack, world, entity, slot, selected);

@@ -2,6 +2,7 @@ package imexoodeex.utilities.items.trinkets;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -22,13 +23,10 @@ public class Mask extends TrinketItem {
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 
-        if (entity.isSneaking() && entity.isOnGround()) {
+        if (entity.isSneaking() && entity.isOnGround() && !entity.isTouchingWater()) {
             Vec3d vel = entity.getVelocity();
-            entity.setVelocity(vel.x * 1.3, vel.y, vel.z * 1.3);
+            entity.setVelocity(vel.x * 1.05, vel.y, vel.z * 1.05);
         }
-
-        //TODO: fix mask bug with water and ice
-
         super.tick(stack, slot, entity);
     }
     @Override

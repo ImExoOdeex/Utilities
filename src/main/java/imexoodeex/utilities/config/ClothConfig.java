@@ -34,4 +34,7 @@ public class ClothConfig implements ConfigData {
     @Comment("Text location of informational items | delete text to see other options!")
     public TEXT_ENUM text_location = TEXT_ENUM.LEFT_MID;
 
+    @Comment("If enabled, bars with cooldown/flight time will be displayed on screen")
+    public boolean display_bars = true;
+
 }
