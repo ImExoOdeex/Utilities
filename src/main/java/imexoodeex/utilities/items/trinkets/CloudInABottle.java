@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import imexoodeex.utilities.client.particles.CloudInABottleParticles;
 import imexoodeex.utilities.sounds.SASounds;
+import imexoodeex.utilities.utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -20,6 +21,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static imexoodeex.utilities.utilities.LOGGER;
+
 public class CloudInABottle extends TrinketItem {
     public CloudInABottle(Settings settings) {
         super(settings);
@@ -27,6 +30,7 @@ public class CloudInABottle extends TrinketItem {
 
     private static int jumpCount = 0;
     private static boolean jumpKey = false;
+    public static int a = 0;
 
     private static int getMultiJumps() {
         int jumpCount = 0;
@@ -60,23 +64,32 @@ public class CloudInABottle extends TrinketItem {
             if (entity.isOnGround() || entity.hasVehicle()) {
                 jumpCount = getMultiJumps();
             } else if (isJumping) {
-                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333 && a == 0) {
                     player.jump();
                     player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
                     world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
                     CloudInABottleParticles.spawnCloudParticles(entity, world);
                     isActive = true;
                     jumpCount--;
+                    a = utilities.CONFIG.cooldown;
                 }
                 jumpKey = true;
             } else {
                 isActive = false;
                 jumpKey = false;
             }
+            a--;
+            if (a <= 0) {
+                a = 0;
+            }
+            LOGGER.info("a: " + a);
         }
 
         if (isActive) {
             player.fallDistance = 0.0F;
+            if (world.isClient()) {
+                LOGGER.info("isActive: " + isActive);
+            }
         }
 
         super.tick(stack, slot, entity);
