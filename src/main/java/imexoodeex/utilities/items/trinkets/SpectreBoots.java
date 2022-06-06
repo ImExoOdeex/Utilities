@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -30,10 +29,9 @@ public class SpectreBoots extends TrinketItem {
 
     /* 20 tick is 1 second, so 7 * 1 sec is 7 seconds of flying*/
     public static double FLIGHTTIME = 7 * 20;
-    private final double flightTimeMax = 7 * 20;
+    public static final double flightTimeMax = 7 * 20;
     private static int fallFlyingA = 0;
     float customFallDistance = 0.0F;
-    boolean warned = false;
 
     private static int jumpCount = 0;
     private static boolean jumpKey = false;
@@ -112,15 +110,6 @@ public class SpectreBoots extends TrinketItem {
             //creative flight
             if (player.isCreative()) {
                 FLIGHTTIME = flightTimeMax;
-            }
-
-            if (FLIGHTTIME < 30 && !warned) {
-                player.sendMessage(new LiteralText("Low fuel!").formatted(Formatting.RED), true);
-                warned = true;
-            } else if (FLIGHTTIME < 10 && warned) {
-                player.sendMessage(new LiteralText("Low fuel!").formatted(Formatting.RED), true);
-            } else if (FLIGHTTIME > 30){
-                warned = false;
             }
 
             LOGGER.info("FLIGHTTIME: " + FLIGHTTIME + "  |  fall distance: " + player.fallDistance + "  |  jump count: " + jumpCount);

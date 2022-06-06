@@ -91,7 +91,12 @@ public class RocketBoots extends TrinketItem {
             if (FLIGHTTIME > flightTimeMax) {
                 FLIGHTTIME = flightTimeMax;
             }
+            //creative flight
+            if (player.isCreative()) {
+                FLIGHTTIME = flightTimeMax;
+            }
         }
+
 
         if (isActive) {
             RocketBootsParticles.spawnRocketParticles(player, world);

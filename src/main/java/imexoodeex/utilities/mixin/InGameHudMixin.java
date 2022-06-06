@@ -7,6 +7,7 @@ import imexoodeex.utilities.items.trinkets.Radar;
 import imexoodeex.utilities.items.trinkets.Stopwatch;
 import imexoodeex.utilities.items.trinkets.Watch;
 import imexoodeex.utilities.registers.ItemRegister;
+import imexoodeex.utilities.screen.RenderFinalBars;
 import imexoodeex.utilities.utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -80,9 +81,7 @@ public abstract class InGameHudMixin {
             }
         }
 
-//        TODO: add bars render to this
-//        https://github.com/ReviversMC/microDurability/blob/master/microdurability-1.18/src/main/java/com/github/reviversmc/microdurability/mixin/InGameHudMixin118.java
-
+        utilities.renderer.onHudRender(matrixStack, tickDelta);
 
     }
 

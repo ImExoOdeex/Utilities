@@ -38,6 +38,7 @@
   "text.autoconfig.utilities.option.decreased_loot": "Decreased loot",
   "text.autoconfig.utilities.option.disable_loot": "Disable loot",
   "text.autoconfig.utilities.option.text_location": "Screen text location",
+  "text.autoconfig.utilities.option.display_bars": "Show info bar on screen",
 
   "Aglet": "§a2% §rmovement speed",
   "Balloon": "Slower §9falling §rand no fall §5damage",
