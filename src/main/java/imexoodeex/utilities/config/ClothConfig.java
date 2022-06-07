@@ -57,7 +57,7 @@ public class ClothConfig implements ConfigData {
 
         @Comment("Color of second bar")
         @ConfigEntry.ColorPicker(allowAlpha = false)
-        public int bar_color2 = 0x000000;
+        public int bar_color2 = 0xfa78a1;
 
         @Comment("Translate 'X' of the bar")
         @ConfigEntry.BoundedDiscrete(min = -100, max = 100)
