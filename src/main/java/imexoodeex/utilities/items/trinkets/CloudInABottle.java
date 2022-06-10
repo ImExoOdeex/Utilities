@@ -21,8 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static imexoodeex.utilities.utilities.LOGGER;
-
 public class CloudInABottle extends TrinketItem {
     public CloudInABottle(Settings settings) {
         super(settings);
@@ -82,14 +80,10 @@ public class CloudInABottle extends TrinketItem {
             if (a <= 0) {
                 a = 0;
             }
-            LOGGER.info("a: " + a);
         }
 
         if (isActive) {
             player.fallDistance = 0.0F;
-            if (world.isClient()) {
-                LOGGER.info("isActive: " + isActive);
-            }
         }
 
         super.tick(stack, slot, entity);

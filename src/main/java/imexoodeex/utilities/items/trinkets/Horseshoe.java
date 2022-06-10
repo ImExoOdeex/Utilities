@@ -21,7 +21,7 @@ public class Horseshoe extends TrinketItem {
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        entity.fallDistance = entity.fallDistance * 0.8f;
+        entity.fallDistance *= 0.90F;
         super.tick(stack, slot, entity);
     }
 

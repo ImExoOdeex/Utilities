@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import imexoodeex.utilities.client.particles.CloudInABottleParticles;
 import imexoodeex.utilities.sounds.SASounds;
+import imexoodeex.utilities.utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -11,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -27,7 +29,8 @@ public class CloudInABalloon extends TrinketItem {
 
     private static int jumpCount = 0;
     private static boolean jumpKey = false;
-
+    public static int a = 0;
+    public static boolean isSelected = false;
     private static int getMultiJumps() {
         jumpCount = 1;
         return jumpCount;
@@ -46,21 +49,24 @@ public class CloudInABalloon extends TrinketItem {
 
         if (world.isClient()) {
             boolean isJumping = MinecraftClient.getInstance().options.jumpKey.isPressed();
-            // double jump
             if (entity.isOnGround() || entity.hasVehicle()) {
                 jumpCount = getMultiJumps();
             } else if (isJumping) {
-                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                if (!jumpKey && jumpCount > 0 && yVelocity < 0.333 && a == 0) {
                     player.jump();
-                    player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+                    player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
                     world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
                     CloudInABottleParticles.spawnCloudParticles(entity, world);
-                    entity.fallDistance = 0.0F;
                     jumpCount--;
+                    a = utilities.CONFIG.cooldown;
                 }
                 jumpKey = true;
             } else {
                 jumpKey = false;
+            }
+            a--;
+            if (a <= 0) {
+                a = 0;
             }
         }
 
@@ -83,12 +89,12 @@ public class CloudInABalloon extends TrinketItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        LivingEntity entity1 = (LivingEntity) entity;
         Vec3d v = entity.getVelocity();
         double yVelocity = v.getY();
 
         PlayerEntity player = (PlayerEntity) entity;
         if (selected && !isHolding && !player.isSneaking() && !player.isSubmergedInWater() && !player.isFallFlying() && !player.getAbilities().flying) {
+            isSelected = true;
             if (!player.isSneaking()) {
                 player.addVelocity(0, 0.02, 0);
                 entity.fallDistance *= 0.5f;
@@ -100,22 +106,34 @@ public class CloudInABalloon extends TrinketItem {
                 if (entity.isOnGround() || entity.hasVehicle()) {
                     jumpCount = getMultiJumps();
                 } else if (isJumping) {
-                    if (!jumpKey && jumpCount > 0 && yVelocity < 0.333) {
+                    if (!jumpKey && jumpCount > 0 && yVelocity < 0.333 && a == 0) {
                         player.jump();
-                        player.playSound(SASounds.CLOUD_SOUND, 1.0F, 1.0F);
+                        player.playSound(SoundEvents.ENTITY_GOAT_LONG_JUMP, 1.0F, 1.0F);
                         world.playSound(player.getX(), player.getY(), player.getZ(), SASounds.CLOUD_SOUND, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-                        CloudInABottleParticles.spawnCloudParticles(entity1, world);
-                        entity.fallDistance = 0.0F;
+                        CloudInABottleParticles.spawnCloudParticles((LivingEntity) entity, world);
                         jumpCount--;
+                        a = utilities.CONFIG.cooldown;
                     }
                     jumpKey = true;
                 } else {
                     jumpKey = false;
                 }
+                a--;
+                if (a <= 0) {
+                    a = 0;
+                }
             }
+        } else {
+            isSelected = false;
         }
 
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
+    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        isSelected = false;
+        super.onEquip(stack, slot, entity);
     }
 
     @Override

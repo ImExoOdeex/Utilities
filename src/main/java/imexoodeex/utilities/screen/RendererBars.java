@@ -2,7 +2,7 @@ package imexoodeex.utilities.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.emi.trinkets.api.TrinketsApi;
-import imexoodeex.utilities.config.ClothConfig;
+import imexoodeex.utilities.items.trinkets.CloudInABalloon;
 import imexoodeex.utilities.items.trinkets.CloudInABottle;
 import imexoodeex.utilities.items.trinkets.RocketBoots;
 import imexoodeex.utilities.items.trinkets.SpectreBoots;
@@ -31,7 +31,8 @@ public abstract class RendererBars extends DrawableHelper implements HudRenderCa
 
         PlayerEntity player = mc.player;
         if ((TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.rocket_boots) || TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.spectre_boots)
-                || TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.cloudinabottle)) && utilities.CONFIG.barStuff.display_bars) {
+                || TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.cloudinabottle) || TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.cloudinaballoon))
+                && utilities.CONFIG.barStuff.display_bars) {
 
             int w = mc.getWindow().getScaledWidth();
             int h = mc.getWindow().getScaledHeight();
@@ -49,6 +50,9 @@ public abstract class RendererBars extends DrawableHelper implements HudRenderCa
             }
             if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.cloudinabottle)) {
                 ItemInt2 = CloudInABottle.a;
+                ItemIntMax2 = utilities.CONFIG.cooldown;
+            } else if (TrinketsApi.getTrinketComponent(player).get().isEquipped(ItemRegister.cloudinaballoon) || CloudInABalloon.isSelected) {
+                ItemInt2 = CloudInABalloon.a;
                 ItemIntMax2 = utilities.CONFIG.cooldown;
             }
 
