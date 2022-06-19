@@ -8,6 +8,6 @@ public class ModMenuScreen implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return screen -> AutoConfig.getConfigScreen(ClothConfig.class, screen).get();
+        return parent -> AutoConfig.getConfigScreen(ClothConfig.class, parent).get();
     }
 }

@@ -10,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -119,7 +118,7 @@ public class RocketBoots extends TrinketItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

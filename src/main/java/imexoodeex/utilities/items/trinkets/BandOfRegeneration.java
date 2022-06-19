@@ -8,7 +8,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +23,7 @@ public class BandOfRegeneration extends TrinketItem {
     public void resetTimer() {
         a = 0;
     }
-    private int activeValue = 400;
+    private final int activeValue = 400;
 
     private void heal(PlayerEntity player) {
         player.setHealth(player.getHealth() + 1.0f);
@@ -47,7 +46,7 @@ public class BandOfRegeneration extends TrinketItem {
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

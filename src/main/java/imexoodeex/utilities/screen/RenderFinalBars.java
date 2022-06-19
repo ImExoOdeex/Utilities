@@ -13,7 +13,6 @@ public class RenderFinalBars extends RendererBars {
         buffer.vertex(x, y + height, 0.0D).color(red, green, blue, alpha).next();
         buffer.vertex(x + width, y + height, 0.0D).color(red, green, blue, alpha).next();
         buffer.vertex(x + width, y, 0.0D).color(red, green, blue, alpha).next();
-        buffer.end();
-        BufferRenderer.draw(buffer);
+        BufferRenderer.drawWithShader(buffer.end());
     }
 }

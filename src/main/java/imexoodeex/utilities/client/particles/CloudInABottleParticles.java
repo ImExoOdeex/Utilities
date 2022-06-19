@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class CloudInABottleParticles {
 
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
 
     public static void spawnCloudParticles(LivingEntity entity, World world) {
         float yBodyRot = entity.getYaw();

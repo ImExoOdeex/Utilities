@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -23,21 +22,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CloudInABalloon extends TrinketItem {
+    public static int a = 0;
+    public static boolean isSelected = false;
+    private static int jumpCount = 0;
+    private static boolean jumpKey = false;
+    private static boolean isHolding = false;
     public CloudInABalloon(Settings settings) {
         super(settings);
     }
 
-    private static int jumpCount = 0;
-    private static boolean jumpKey = false;
-    public static int a = 0;
-    public static boolean isSelected = false;
     private static int getMultiJumps() {
         jumpCount = 1;
         return jumpCount;
     }
-
-    private static boolean isHolding = false;
-
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
@@ -138,7 +135,7 @@ public class CloudInABalloon extends TrinketItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

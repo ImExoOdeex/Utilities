@@ -12,27 +12,13 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import static imexoodeex.utilities.utilities.LOGGER;
 
 import java.util.List;
-import java.util.Objects;
 
 public class GPS extends TrinketItem implements TrinketRenderer {
     public GPS(Settings settings) {
@@ -55,7 +41,7 @@ public class GPS extends TrinketItem implements TrinketRenderer {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(getClass().getSimpleName()).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(getClass().getSimpleName()).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 
