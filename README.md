@@ -6,7 +6,6 @@ Enchance your game by adding some helpfull accessories to your character. Rich c
 - ~~add config to mod (speed unit, loot drop in chests)~~ (DONE)
 - ~~server compatibilioty (network)~~ (DONE)
 - some new items (opitional, there are many items right now)
-- nerf items cuz it's to OP
 
 > [curseforge](https://www.curseforge.com/minecraft/mc-mods/equippable-utilities)
 > 
