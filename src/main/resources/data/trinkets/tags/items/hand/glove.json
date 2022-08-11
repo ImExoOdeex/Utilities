@@ -1,6 +1,5 @@
 {
   "replace": false,
-  "amount": 1,
   "values": [
     "utilities:balloon",
     "utilities:cloudinaballoon",

@@ -1,6 +1,5 @@
 {
   "replace": false,
-  "amount": 5,
   "values": [
     "utilities:bandofregeneration"
   ]

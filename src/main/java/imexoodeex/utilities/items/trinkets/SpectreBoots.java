@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static imexoodeex.utilities.utilities.LOGGER;
-
 public class SpectreBoots extends TrinketItem {
 
     public SpectreBoots(Settings settings) {
@@ -110,8 +108,6 @@ public class SpectreBoots extends TrinketItem {
             if (player.isCreative()) {
                 FLIGHTTIME = flightTimeMax;
             }
-
-            LOGGER.info("FLIGHTTIME: " + FLIGHTTIME + "  |  fall distance: " + player.fallDistance + "  |  jump count: " + jumpCount);
 
         }
 
