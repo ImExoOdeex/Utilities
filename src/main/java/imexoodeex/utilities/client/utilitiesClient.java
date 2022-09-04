@@ -1,6 +1,8 @@
 package imexoodeex.utilities.client;
 
 import imexoodeex.utilities.registers.ParticleRegister;
+import imexoodeex.utilities.screen.RenderFinalBars;
+import imexoodeex.utilities.screen.RendererBars;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,6 +14,8 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class utilitiesClient implements ClientModInitializer {
+
+    public static RendererBars renderer;
     @Override
     public void onInitializeClient() {
 
@@ -44,5 +48,8 @@ public class utilitiesClient implements ClientModInitializer {
             registry.register(new Identifier("utilities", "particle/green_piece"));
         }));
         ParticleFactoryRegistry.getInstance().register(ParticleRegister.GREEN_PIECE, FlameParticle.Factory::new);
+
+        //register renderer
+        renderer = new RenderFinalBars();
     }
 }

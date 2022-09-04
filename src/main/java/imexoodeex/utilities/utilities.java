@@ -20,7 +20,6 @@ public class utilities implements ModInitializer {
     public static final String MOD_ID = "utilities";
     public static final Logger LOGGER = LogManager.getLogger();
     public static ClothConfig CONFIG;
-    public static RendererBars renderer;
 
     @Override
     public void onInitialize() {
@@ -30,8 +29,6 @@ public class utilities implements ModInitializer {
         CONFIG = AutoConfig.getConfigHolder(ClothConfig.class).getConfig();
         //Change allow-flight to true due to rocket flight on server
         ServerLifecycleEvents.SERVER_STARTED.register(server->server.setFlightEnabled(true));
-        //register renderer
-        renderer = new RenderFinalBars();
 
         ItemRegister.registerSAItems();
         ParticleRegister.registerParticle();

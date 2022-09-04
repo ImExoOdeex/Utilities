@@ -8,6 +8,7 @@ import imexoodeex.utilities.items.trinkets.Stopwatch;
 import imexoodeex.utilities.items.trinkets.Watch;
 import imexoodeex.utilities.registers.ItemRegister;
 import imexoodeex.utilities.screen.RenderFinalBars;
+import imexoodeex.utilities.client.utilitiesClient;
 import imexoodeex.utilities.utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -81,7 +82,7 @@ public abstract class InGameHudMixin {
             }
         }
 
-        utilities.renderer.onHudRender(matrixStack, tickDelta);
+        utilitiesClient.renderer.onHudRender(matrixStack, tickDelta);
 
     }
 
