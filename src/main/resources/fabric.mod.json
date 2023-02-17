@@ -6,7 +6,6 @@
   "description": "Terraria style mod. Adds various accessories to the game. Explore world to make your game more interesting.",
   "authors": ["imexoodeex"],
   "contact": {
-    "homepage": "https://www.cebuliony.pl/utilities",
     "sources": "https://github.com/ImExoOdeex/utilities",
     "issues": "https://github.com/ImExoOdeex/utilities/issues"
   },
@@ -30,6 +29,6 @@
   "depends": {
     "fabricloader": ">=0.14.8",
     "fabric": "*",
-    "minecraft": "1.19.2"
+    "minecraft": "1.19.3"
   }
 }

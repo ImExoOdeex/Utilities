@@ -3,7 +3,6 @@ package imexoodeex.utilities.client.particles;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -19,7 +18,7 @@ public class HealParticles {
         float random = (rand.nextFloat() - 0.05F) * 0.01F;
 
         Vec3d vUp = new Vec3d(0.33, 0, 0).rotateX(0).rotateY((yBodyRot / -57.295f));
-        Vec3d up = playerPos.add(vUp).add(new Vec3d(new Vec3f(entity.getVelocity().multiply(0.01D))));
+        Vec3d up = playerPos.add(vUp).add(new Vec3d(entity.getVelocity().multiply(0.01D).toVector3f()));
 
         spawnParticles(random, world, up);
     }
