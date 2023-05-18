@@ -67,7 +67,7 @@ public abstract class RendererBars extends DrawableHelper implements HudRenderCa
 
     public void renderBars(double width, double width2, int x, int y, PlayerEntity player) {
         RenderSystem.disableDepthTest();
-        RenderSystem.disableTexture();
+//        RenderSystem.disable();
         RenderSystem.disableBlend();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
@@ -88,7 +88,7 @@ public abstract class RendererBars extends DrawableHelper implements HudRenderCa
         this.renderGuiQuad(bufferBuilder, x, y + 1, width2, 1, red2, green2, blue2, 255);
 
         RenderSystem.enableBlend();
-        RenderSystem.enableTexture();
+//        RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
 
